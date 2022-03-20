@@ -28,8 +28,14 @@ TBA
 
 ## Run the server
 
-In the root of the project run the server with
+In the root of the project run the api with
 
 ```
 npm run api
+```
+
+In the root of the project run the client with
+
+```
+npm run client
 ```
