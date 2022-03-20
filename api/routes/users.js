@@ -15,7 +15,7 @@ module.exports = (db) => {
       SELECT * FROM test;
       `
     ).then((data) => {
-      console.log(data);
+      console.log(data.rows);
       response.send(data.rows);
     });
   });
