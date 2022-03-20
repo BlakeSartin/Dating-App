@@ -17,6 +17,8 @@ const testAPIRouter = require("./routes/testAPI");
 // database
 const db = require("./db");
 const app = express();
+const knexConfig = require("./db/knexfile");
+const knex = require("knex")(knexConfig[ENV]);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
