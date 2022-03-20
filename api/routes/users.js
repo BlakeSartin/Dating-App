@@ -8,16 +8,25 @@ const router = express.Router();
 
 // module.exports = router;
 
-module.exports = (db) => {
+module.exports = (knex) => {
   router.get("/", (request, response) => {
-    db.query(
-      `
-      SELECT * FROM test;
-      `
-    ).then((data) => {
-      console.log(data.rows);
-      response.send(data.rows);
-    });
+    // db.query(
+    //   `
+    //   SELECT * FROM test;
+    //   `
+    // ).then((data) => {
+    //   console.log(data.rows);
+    //   response.send(data.rows);
+    // });
+    knex("test")
+      .select({
+        id: "id",
+        name: "name",
+      })
+      .then((users) => {
+        console.log(users);
+        response.json(users);
+      });
   });
 
   return router;

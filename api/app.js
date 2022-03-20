@@ -17,6 +17,8 @@ const testAPIRouter = require("./routes/testAPI");
 // database
 const db = require("./db");
 const app = express();
+const knexConfig = require("./db/knexfile");
+const knex = require("knex")(knexConfig[ENV]);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -30,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter(db));
+app.use("/users", usersRouter(knex));
 app.use("/testAPI", testAPIRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
