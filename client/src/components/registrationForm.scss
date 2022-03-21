@@ -1,0 +1,13 @@
+div {
+  text-align: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      margin-bottom: 1rem;
+    }
+  }
+}
