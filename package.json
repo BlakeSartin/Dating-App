@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "(cd client && npm install); (cd api && npm install)",
     "api": "(cd api && npm start)",
-    "client": "(cd client && npm start)"
+    "client": "(cd client && npm start)",
+    "migrate": "(cd api && npm run migrate)"
   },
   "repository": {
     "type": "git",

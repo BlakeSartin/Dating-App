@@ -1,4 +1,5 @@
 // Update with your config settings.
+const ENV = require("../environment");
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
