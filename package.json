@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/BlakeSartin/Dating-App/issues"
   },
-  "homepage": "https://github.com/BlakeSartin/Dating-App#readme"
+  "homepage": "https://github.com/BlakeSartin/Dating-App#readme",
+  "dependencies": {
+    "react-router-dom": "^6.2.2",
+    "react-tinder-card": "^1.4.5"
+  }
 }
