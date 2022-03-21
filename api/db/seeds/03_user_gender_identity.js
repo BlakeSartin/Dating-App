@@ -59,5 +59,5 @@ exports.seed = async function (knex) {
       gender_id: Math.floor(Math.random() * genderNames.length),
     });
   }
-  await knex("user_gender_identity").insert();
+  await knex("user_gender_identity").insert(userIdentities);
 };
