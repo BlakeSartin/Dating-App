@@ -11,7 +11,7 @@ exports.up = function (knex) {
     table.string("summary");
     table.text("profile");
     table.timestamp("last_seen").defaultTo(knex.fn.now());
-    table.timestamps([useTimestamps], [defaultToNow]);
+    table.timestamps(true, true);
   });
 };
 
