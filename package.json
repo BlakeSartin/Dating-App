@@ -9,7 +9,9 @@
     "api": "(cd api && npm start)",
     "client": "(cd client && npm start)",
     "migrate": "(cd api && npm run migrate)",
-    "seed": "(cd api && npm run seed)"
+    "seed": "(cd api && npm run seed)",
+    "rollback": "(cd api && npm run rollback)",
+    "resetdb": "npm run rollback && npm run migrate && npm run seed"
   },
   "repository": {
     "type": "git",
