@@ -22,9 +22,15 @@ PGPASSWORD=development
 PGPORT=5432
 ```
 
-## Seeding the server
+## Creating the database tables
 
-TBA
+In the root of the project you can create all the tables and seed them with fake data with
+
+```
+npm run resetdb
+```
+
+You can run this command anytime to full reset the database tables. Remember this will generate entirely new seed data.
 
 ## Run the server
 

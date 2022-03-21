@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "migrate": "knex migrate:latest --knexfile db/knexfile.js"
+    "migrate": "knex migrate:latest --knexfile db/knexfile.js",
+    "seed": "knex seed:run --knexfile db/knexfile.js",
+    "rollback": "knex migrate:rollback --all --knexfile db/knexfile.js" 
   },
   "dependencies": {
     "body-parser": "^1.19.2",
