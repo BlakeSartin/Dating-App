@@ -1,7 +1,10 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import "./registrationForm.scss"
 
 export default function RegistrationForm(props) {
+  const history = useHistory();
+
   const [identity, setIdentity] = useState("")
   const [relationship, setRelationship] = useState("")
   const [preference, setPreference] = useState("")
@@ -23,11 +26,19 @@ export default function RegistrationForm(props) {
     alert(`1: ${identity} 2: ${relationship} 3: ${preference}`)
   }
 
+  const startMatch = () => {
+    history.push('/')
+  }
+
+  const toProfile = () => {
+    history.push('/profile')
+  }
+
   return (
     <div>
       <h1>Let's get to know you!</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form1">
         <label>
           What is your identity?
           <select value={identity} onChange={registerIdentity}>
@@ -57,6 +68,17 @@ export default function RegistrationForm(props) {
 
         <input type="submit" value="Submit" />
       </form>
+
+      <div className="secondary-prompt">
+        <h1>Ready to mingle?</h1>
+        <button onClick={startMatch}>
+          Get matched!
+        </button>
+
+        <button onClick={toProfile}>
+          Continue building profile.
+        </button>
+      </div>
     </div>
   )
 }
