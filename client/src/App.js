@@ -1,5 +1,6 @@
 import React from "react";
 import Cards from "./components/Cards";
+import RegistrationForm from "./components/RegistrationForm";
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,11 +15,17 @@ function App() {
         <Switch>
             <Route path="/chat">
               <h1>I am the chat page</h1>
-                </Route>
-                <Route path="/profile">
-                  i am the profile page
-                  </Route>
-                  <Route path="/">
+            </Route>
+
+            <Route path="/profile">
+              i am the profile page
+            </Route>
+
+            <Route path="/register">
+              <RegistrationForm />
+            </Route>
+
+            <Route path="/">
             <h1><Cards /></h1>
             </Route>
         </Switch>
