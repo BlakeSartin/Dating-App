@@ -33,10 +33,12 @@ exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("genders").del();
 
-  // const genders = [];
-  // for (const gender of genderNames) {
-  //   genders.push({ name: gender });
-  // }
+  // create array of gender objects
+  const genders = [];
+  for (const gender of genderNames) {
+    genders.push({ name: gender });
+  }
 
+  // add them to database
   await knex("genders").insert(genders);
 };
