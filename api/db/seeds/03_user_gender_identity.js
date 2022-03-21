@@ -33,9 +33,31 @@ exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("table_name").del();
 
-  await knex("table_name").insert([
-    { id: 1, colName: "rowValue1" },
-    { id: 2, colName: "rowValue2" },
-    { id: 3, colName: "rowValue3" },
-  ]);
+  userIdentities = [];
+  const fakeUsersCount = 1000;
+
+  // create 5 gender identities for each user
+  for (let i = 1; i <= fakeUsersCount; i++) {
+    userIdentities.push({
+      user_id: i,
+      gender_id: Math.floor(Math.random() * genderNames.length),
+    });
+    userIdentities.push({
+      user_id: i,
+      gender_id: Math.floor(Math.random() * genderNames.length),
+    });
+    userIdentities.push({
+      user_id: i,
+      gender_id: Math.floor(Math.random() * genderNames.length),
+    });
+    userIdentities.push({
+      user_id: i,
+      gender_id: Math.floor(Math.random() * genderNames.length),
+    });
+    userIdentities.push({
+      user_id: i,
+      gender_id: Math.floor(Math.random() * genderNames.length),
+    });
+  }
+  await knex("table_name").insert();
 };
