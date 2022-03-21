@@ -31,7 +31,7 @@ genderNames = [
 
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex("table_name").del();
+  await knex("user_gender_identity").del();
 
   userIdentities = [];
   const fakeUsersCount = 1000;
@@ -59,5 +59,5 @@ exports.seed = async function (knex) {
       gender_id: Math.floor(Math.random() * genderNames.length),
     });
   }
-  await knex("table_name").insert();
+  await knex("user_gender_identity").insert();
 };
