@@ -8,7 +8,8 @@
     "postinstall": "(cd client && npm install); (cd api && npm install)",
     "api": "(cd api && npm start)",
     "client": "(cd client && npm start)",
-    "migrate": "(cd api && npm run migrate)"
+    "migrate": "(cd api && npm run migrate)",
+    "seed": "(cd api && npm run seed)"
   },
   "repository": {
     "type": "git",
