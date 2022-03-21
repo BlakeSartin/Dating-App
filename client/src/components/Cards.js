@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import TinderCard from 'react-tinder-card'
-import {withRouter} from "react-router-dom"
+import "./cards.scss"
 function Cards(){
   const [people, setPeople] = useState([
     {
