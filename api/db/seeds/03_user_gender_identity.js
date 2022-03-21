@@ -29,6 +29,11 @@ genderNames = [
   "Two Spirit",
 ];
 
+// helper function to randomly select id number of a gender identity
+const generateGenderIdentity = () => {
+  return Math.floor(Math.random() * genderNames.length) + 1;
+};
+
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("user_gender_identity").del();
@@ -40,23 +45,23 @@ exports.seed = async function (knex) {
   for (let i = 1; i <= fakeUsersCount; i++) {
     userIdentities.push({
       user_id: i,
-      gender_id: Math.floor(Math.random() * genderNames.length),
+      gender_id: generateGenderIdentity(),
     });
     userIdentities.push({
       user_id: i,
-      gender_id: Math.floor(Math.random() * genderNames.length),
+      gender_id: generateGenderIdentity(),
     });
     userIdentities.push({
       user_id: i,
-      gender_id: Math.floor(Math.random() * genderNames.length),
+      gender_id: generateGenderIdentity(),
     });
     userIdentities.push({
       user_id: i,
-      gender_id: Math.floor(Math.random() * genderNames.length),
+      gender_id: generateGenderIdentity(),
     });
     userIdentities.push({
       user_id: i,
-      gender_id: Math.floor(Math.random() * genderNames.length),
+      gender_id: generateGenderIdentity(),
     });
   }
   await knex("user_gender_identity").insert(userIdentities);
