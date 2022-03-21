@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import TinderCard from 'react-tinder-card'
+import {withRouter} from "react-router-dom"
 function Cards(){
   const [people, setPeople] = useState([
     {
@@ -22,7 +23,8 @@ function Cards(){
         <TinderCard
         className= "swipe"
         key={(person.name)}
-        preventSwipe={['up', 'down']}>
+        preventSwipe={['up', 'down']}
+        >
           <div style={{ backgroundImage: `url(${person.url})`}} className='card'>
             <h3>{person.name}</h3>
               </div>
