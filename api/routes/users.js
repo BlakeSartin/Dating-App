@@ -18,11 +18,8 @@ module.exports = (knex) => {
     //   console.log(data.rows);
     //   response.send(data.rows);
     // });
-    knex("test")
-      .select({
-        id: "id",
-        name: "name",
-      })
+    knex("users")
+      .select()
       .then((users) => {
         console.log(users);
         response.json(users);
