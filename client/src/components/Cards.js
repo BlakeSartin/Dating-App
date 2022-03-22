@@ -1,18 +1,20 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./cards.scss";
-import { IconButton } from "@mui/material";
-import { HeartBroken, SettingsBackupRestore, Favorite } from "@mui/icons-material";
+import { IconButton, Accordion, Typography, AccordionSummary, AccordionDetails } from "@mui/material";
+import { HeartBroken, SettingsBackupRestore, Favorite, ExpandMore } from "@mui/icons-material";
 
 
 const db = [
   {
     name: "prince",
     url: "https://www.chicagotribune.com/resizer/3U1sOcVhiya2oB1GGaSO2GfYD8A=/415x508/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/NKTE7ZA6RJAAPNMPH4XN2IRRTA.jpg",
+    summary:"Standing tall, and athletically built with red skin, Apolónia has a knowing feel about .soft, large brown eyes, a narrow nose, and a pointed chin. short, fine, black hair is features a side part.clothing is revealing and mismatched. A particularly noticeable feature is accent which people usually find annoying."
   },
   {
     name: "fredie mercury",
     url: "https://cdns-images.dzcdn.net/images/artist/d690b6b1e9ff8f0a7944b2293b540966/500x500.jpg",
+    summary:"Standing tall, and stocky with pink skin, Sylvaine has an unruly feel about .distrustful, large black eyes, a big nose, and a round chin. very short, straight, blonde hair is is styled with a crew cut.clothing is slightly too small and retro. A particularly noticeable feature is distinctive clothes."
   },
 ];
 
@@ -63,8 +65,6 @@ function Cards() {
   console.log(input);
   return (
     <div>
-      <h1>Cards</h1>
-
       {db.map((person, index) => (
         <TinderCard
           ref={childRefs[index]}
@@ -80,17 +80,31 @@ function Cards() {
           >
             <h3>{person.name}</h3>
           </div>
+          <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Description</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            {person.summary}
+          </Typography>
+        </AccordionDetails>
+        </Accordion>
         </TinderCard>
       ))}
       <div className="buttons">
         <IconButton id = "button" onClick={() => swipe("left")}>
-          <HeartBroken />
+          <HeartBroken fontSize="large" sx={{ fontSize: 30 }}/>
           </IconButton>
         <IconButton id = "button" onClick={() => goBack()}>
-          <SettingsBackupRestore />
+          <SettingsBackupRestore fontSize="large" sx={{ fontSize: 30 }}/>
           </IconButton>
         <IconButton id = "button" onClick={() => swipe("right")}>
-          <Favorite />
+          <Favorite fontSize="large" sx={{ fontSize: 30 }}/>
         </IconButton>
       </div>
     </div>
