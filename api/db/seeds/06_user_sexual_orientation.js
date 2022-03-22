@@ -11,9 +11,9 @@ exports.seed = async function (knex) {
   const fakeUserCount = 1000;
   for (let i = 1; i <= fakeUserCount; i++) {
     for (let j = 0; j < 5; j++) {
-      userIdentities.push({
+      userOrientations.push({
         user_id: i,
-        gender_id: randomPosition(orientationNames),
+        orientation_id: randomPosition(orientationNames),
       });
     }
   }
