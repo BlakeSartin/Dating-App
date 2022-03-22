@@ -1,6 +1,7 @@
 import React from "react";
 import Cards from "./components/Cards";
 import RegistrationForm from "./components/RegistrationForm";
+import Profile from "./components/Profile";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,7 +19,7 @@ function App() {
             </Route>
 
             <Route path="/profile">
-              i am the profile page
+              <Profile />
             </Route>
 
             <Route path="/register">
