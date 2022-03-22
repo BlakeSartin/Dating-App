@@ -4,12 +4,15 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex("table_name").del();
-  await knex("table_name").insert([
-    { id: 1, colName: "rowValue1" },
-    { id: 2, colName: "rowValue2" },
-    { id: 3, colName: "rowValue3" },
-  ]);
+  await knex("relationship_types").del();
+
+  // create array of relationship type objects
+  const relationships = [];
+  for (const relationship of relationshipNames) {
+    relationships.push({ name: relationship });
+  }
+
+  await knex("relationship_types").insert(relationships);
 };
 
 // array of relationship type names
