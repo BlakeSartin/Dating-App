@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/BlakeSartin/Dating-App#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.0",
+    "@fortawesome/free-solid-svg-icons": "^6.1.0",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "react-router-dom": "^5.2.0",
     "react-tinder-card": "^1.4.5"
   }

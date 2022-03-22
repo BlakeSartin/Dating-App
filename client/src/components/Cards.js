@@ -1,6 +1,9 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./cards.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHeartCrack, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+
 const db = [
   {
     name: "prince",
@@ -35,13 +38,8 @@ function Cards() {
   const canSwipe = people >= 0;
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentPeopleRef.current)
-    // handle the case in which go back is pressed before card goes outOfFrame
-    currentPeopleRef.current >= idx && childRefs[idx].current.restoreCard()
-    // TODO: when quickly swipe and restore multiple times the same card,
-    // it happens multiple outOfFrame events are queued and the card disappear
-    // during latest swipes. Only the last outOfFrame event should be considered valid
-  }
+    currentPeopleRef.current >= idx && childRefs[idx].current.restoreCard();
+  };
 
   const swipe = async (dir) => {
     if (canSwipe && people < db.length) {
@@ -84,20 +82,14 @@ function Cards() {
         </TinderCard>
       ))}
       <div className="buttons">
-        <button
-          onClick={() => swipe("left")}
-        >
-          Swipe left!
-        </button>
-        <button
-          onClick={() => goBack()}
-        >
-          Undo swipe!
-        </button>
-        <button
-          onClick={() => swipe("right")}
-        >
-          Swipe right!
+        <button id = "button" onClick={() => swipe("left")}>
+          <FontAwesomeIcon icon={faHeartCrack} size="lg" beat/>
+          </button>
+        <button id = "button" onClick={() => goBack()}>
+          <FontAwesomeIcon icon={faRotateLeft} size="lg" />
+          </button>
+        <button id = "button" onClick={() => swipe("right")}>
+          <FontAwesomeIcon icon={faHeart} size="lg" beat/>
         </button>
       </div>
     </div>
