@@ -41,32 +41,26 @@ export default function RegistrationForm(props) {
       <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
       <form onSubmit={handleSubmit} id="first-prompt" className={isActive ? "active" : "inactive"}>
-        <label>
-          What is your identity?
-          <select value={identity} onChange={registerIdentity}>
-            <option value="heterosexual">Heterosexual</option>
-            <option value="gay">Gay</option>
-            <option value="lesbian">Lesbian</option>
-          </select>
-        </label>
+        <label>What is your identity?</label>
+        <select value={identity} onChange={registerIdentity}>
+          <option value="heterosexual">Heterosexual</option>
+          <option value="gay">Gay</option>
+          <option value="lesbian">Lesbian</option>
+        </select>
 
-        <label>
-          What type of relationship are you looking for?
-          <select value={relationship} onChange={registerRelationship}>
+        <label>What type of relationship are you looking for?</label>
+        <select value={relationship} onChange={registerRelationship}>
             <option value="Friendly">Friendly</option>
             <option value="Roamntic">Romantic</option>
             <option value="Serious">Serious</option>
           </select>
-        </label>
 
-        <label>
-          What are your preferences?
-          <select value={preference} onChange={registerPreference}>
-            <option value="heterosexual">Heterosexual</option>
-            <option value="gay">Gay</option>
-            <option value="lesbian">Lesbian</option>
-          </select>
-        </label>
+        <label>What are your preferences?</label>
+        <select value={preference} onChange={registerPreference}>
+          <option value="heterosexual">Heterosexual</option>
+          <option value="gay">Gay</option>
+          <option value="lesbian">Lesbian</option>
+        </select>
 
         <input type="submit" value="Submit" />
       </form>
