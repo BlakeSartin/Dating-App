@@ -1,20 +1,19 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  Link } from "react-router-dom";
-import { faUser, faHeartCirclePlus, faCommentDots } from "@fortawesome/free-solid-svg-icons";
+import { AccountBox, Chat, VolunteerActivism  } from "@mui/icons-material";
 import "./header.scss";
 
 const header= () =>{
   return (
   <div className="navbar">
     <p>
-      <Link to="/profile"><FontAwesomeIcon icon={faUser} size="lg"/></Link>
+      <Link to="/profile"><AccountBox /></Link>
     </p>
     <p>
-      <Link to="/"><FontAwesomeIcon icon={faHeartCirclePlus} size="lg"/></Link>
+      <Link to="/"><VolunteerActivism /></Link>
     </p>
     <p>
-      <Link to="/chat"><FontAwesomeIcon icon={faCommentDots} size="lg"/></Link>
+      <Link to="/chat"><Chat /></Link>
     </p>
   </div>
   );
