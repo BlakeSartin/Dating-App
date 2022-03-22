@@ -2,6 +2,7 @@ import React from "react";
 import Cards from "./components/Cards";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
+import Header from "./components/Header";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,6 +14,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+      <Header />
         <Switch>
             <Route path="/chat">
               <h1>I am the chat page</h1>
