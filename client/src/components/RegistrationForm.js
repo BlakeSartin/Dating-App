@@ -8,6 +8,7 @@ export default function RegistrationForm(props) {
   const [identity, setIdentity] = useState("")
   const [relationship, setRelationship] = useState("")
   const [preference, setPreference] = useState("")
+  const [isActive, setActive] = useState("false");
 
   const registerIdentity = (event) => {
     setIdentity(event.target.value)
@@ -24,6 +25,7 @@ export default function RegistrationForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`1: ${identity} 2: ${relationship} 3: ${preference}`)
+    setActive(!isActive);
   }
 
   const startMatch = () => {
@@ -36,9 +38,9 @@ export default function RegistrationForm(props) {
 
   return (
     <div>
-      <h1>Let's get to know you!</h1>
+      <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
-      <form onSubmit={handleSubmit} className="form1">
+      <form onSubmit={handleSubmit} id="first-prompt" className={isActive ? "active" : "inactive"}>
         <label>
           What is your identity?
           <select value={identity} onChange={registerIdentity}>
@@ -69,7 +71,7 @@ export default function RegistrationForm(props) {
         <input type="submit" value="Submit" />
       </form>
 
-      <div className="secondary-prompt">
+      <div id="secondary-prompt" className={isActive ? "inactive" : "active"}>
         <h1>Ready to mingle?</h1>
         <button onClick={startMatch}>
           Get matched!
