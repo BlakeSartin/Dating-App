@@ -16,3 +16,28 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema.dropTable("sexual_orientations");
 };
+
+// array of sexual orientation names
+
+const orientationNames = [
+  "Straight",
+  "Lesbian",
+  "Gay",
+  "Bisexial",
+  "Queer",
+  "Pansexual",
+  "Questioning",
+  "Heteroflexible",
+  "Homoflexible",
+  "Asexual",
+  "Gray-sexual",
+  "Demisexual",
+  "Reciprosexual",
+  "Akiosexual",
+  "Aceflux",
+  "Grayromantic",
+  "Demiromantic",
+  "Recipromantic",
+  "Akioromantic",
+  "Aroflux",
+];
