@@ -1,8 +1,9 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import "./cards.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHeartCrack, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { IconButton } from "@mui/material";
+import { HeartBroken, SettingsBackupRestore, Favorite } from "@mui/icons-material";
+
 
 const db = [
   {
@@ -82,15 +83,15 @@ function Cards() {
         </TinderCard>
       ))}
       <div className="buttons">
-        <button id = "button" onClick={() => swipe("left")}>
-          <FontAwesomeIcon icon={faHeartCrack} size="lg" beat/>
-          </button>
-        <button id = "button" onClick={() => goBack()}>
-          <FontAwesomeIcon icon={faRotateLeft} size="lg" />
-          </button>
-        <button id = "button" onClick={() => swipe("right")}>
-          <FontAwesomeIcon icon={faHeart} size="lg" beat/>
-        </button>
+        <IconButton id = "button" onClick={() => swipe("left")}>
+          <HeartBroken />
+          </IconButton>
+        <IconButton id = "button" onClick={() => goBack()}>
+          <SettingsBackupRestore />
+          </IconButton>
+        <IconButton id = "button" onClick={() => swipe("right")}>
+          <Favorite />
+        </IconButton>
       </div>
     </div>
   );
