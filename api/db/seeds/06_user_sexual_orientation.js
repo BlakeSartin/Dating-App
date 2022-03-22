@@ -4,7 +4,7 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex("table_name").del();
+  await knex("user_sexual_orientation").del();
 
   // create 5 sexual orientation for each user
   userOrientations = [];
@@ -18,11 +18,7 @@ exports.seed = async function (knex) {
     }
   }
 
-  await knex("table_name").insert([
-    { id: 1, colName: "rowValue1" },
-    { id: 2, colName: "rowValue2" },
-    { id: 3, colName: "rowValue3" },
-  ]);
+  await knex("user_sexual_orientation").insert(userOrientations);
 };
 
 // array of sexual orientation names
