@@ -24,9 +24,11 @@ const genderNames = [
   "Two Spirit",
 ];
 
+const fakeUsersCount = 1000;
+
 // helper function to randomly select id number of a gender identity
 const generateGenderId = () => {
   return Math.floor(Math.random() * genderNames.length) + 1;
 };
 
-export { generateGenderId };
+module.export = { fakeUsersCount, generateGenderId };
