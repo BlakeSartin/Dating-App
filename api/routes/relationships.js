@@ -10,6 +10,15 @@ module.exports = (knex) => {
         response.json(relationships);
       });
   });
+  // get a specific relationship type based on id
+  router.get("/:id", (request, response) => {
+    knex("relationship_types")
+      .select()
+      .whereRaw("id = ?", [request.params.id])
+      .then((relationships) => {
+        response.json(relationships);
+      });
+  });
 
   return router;
 };
