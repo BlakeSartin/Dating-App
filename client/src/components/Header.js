@@ -12,9 +12,9 @@ const header = () => {
         <Toolbar>
           <Typography variant="h6" component="div">
             <IconButton
+            className="hand_heart"
               size="large"
               edge="start"
-              color="inherit"
               aria-label="menu"
               sx={{ mr: 5 }}
             >
@@ -35,9 +35,9 @@ const header = () => {
             Q
           </Typography>
           <IconButton
+          className="chat_bubble"
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
@@ -46,9 +46,9 @@ const header = () => {
             </Link>
           </IconButton>
           <IconButton
+          className="profile_cube"
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
           >
             <Link to="/profile">

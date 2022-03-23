@@ -12,7 +12,7 @@
 }
 .card > h3 {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   color: white;
 }
 
@@ -28,19 +28,37 @@
 }
 
 .buttons {
-  position: fixed;
-  bottom: 15vh;
+  position:relative;
+  top: 70vh;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-#button {
-  font-size:x-large;
-  border: none;
-  color:blue;
-  border-radius: 50%;
-  box-shadow: 0px 18px 53px 0px rgba(0, 0, 0, 0.3);
+.buttons .MuiIconButton-root {
+  background-color: white;
+  box-shadow: 0px 10px 53px 0px rgba(0, 0, 0, 0.3) !important
+}
+
+.broke_button {
+  padding: 3vw !important;
+  color: orangered !important;
+}
+
+.undo_button {
+  padding: 3vw !important;
+  color: cyan !important;
+}
+
+.heart_button {
+  padding: 3vw !important;
+  color: red!important;
+}
+
+.card_backdrop {
+  position: absolute;
+  bottom: 15px;
+  color: white;
 }
 
 
