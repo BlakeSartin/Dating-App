@@ -13,7 +13,7 @@ const cors = require("cors");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const gendersRouter = require("./routes/genders");
-const testAPIRouter = require("./routes/testAPI");
+const orientationsRouter = require("./routes/orientations");
 
 // database
 const db = require("./db");
@@ -34,8 +34,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/", indexRouter);
 app.use("/api/users", usersRouter(knex));
-app.use("/api/testAPI", testAPIRouter);
 app.use("/api/genders", gendersRouter(knex));
+app.use("/api/orientations", orientationsRouter(knex));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
