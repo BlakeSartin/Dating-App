@@ -3,6 +3,7 @@ import Cards from "./components/Cards";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
+import Chats from "./components/Chats"
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +18,7 @@ function App() {
       <Header />
         <Switch>
             <Route path="/chat">
-              <h1>I am the chat page</h1>
+              <Chats />
             </Route>
 
             <Route path="/profile">
