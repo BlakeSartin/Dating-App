@@ -1,6 +1,11 @@
 import React, { useState } from "react"
 import { Avatar } from '@mui/material';
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+
 import ProfileButton from "./ProfileButton"
 import "./profile.scss"
 
@@ -16,10 +21,12 @@ export default function Profile(props) {
       </section>
 
       <section className="profile-nav">
-        <ProfileButton name="Placeholder"/>
-        <ProfileButton name="Update Preferences"/>
-        <ProfileButton name="Settings"/>
-        <ProfileButton name="Logout"/>
+        <List>
+          <ProfileButton name="Gender" />
+          <ProfileButton name="Preference" />
+          <ProfileButton name="Settings" />
+          <ProfileButton name="Logout" />
+        </List>
       </section>
     </main>
   )
