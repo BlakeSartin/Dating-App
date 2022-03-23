@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("user_photos", function (table) {
-    table.increments("id");
+    table.increments("id").primary();
     table.integer("user_id").references("id").inTable("users");
     table.text("url");
     table.timestamp("time_added").defaultTo(knex.fn.now());
