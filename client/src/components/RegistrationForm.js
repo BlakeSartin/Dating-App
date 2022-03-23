@@ -24,7 +24,6 @@ export default function RegistrationForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`1: ${identity} 2: ${relationship} 3: ${preference}`)
     setActive(!isActive);
   }
 
@@ -37,10 +36,10 @@ export default function RegistrationForm(props) {
   }
 
   return (
-    <div>
+    <div className="register-div">
       <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
-      <form onSubmit={handleSubmit} id="first-prompt" className={isActive ? "active" : "inactive"}>
+      <form onSubmit={handleSubmit} className={isActive ? "active" : "inactive"}>
         <label>What is your identity?</label>
         <select value={identity} onChange={registerIdentity}>
           <option value="heterosexual">Heterosexual</option>
@@ -48,7 +47,7 @@ export default function RegistrationForm(props) {
           <option value="lesbian">Lesbian</option>
         </select>
 
-        <label>What type of relationship are you looking for?</label>
+        <label>Type of relationship you are looking for?</label>
         <select value={relationship} onChange={registerRelationship}>
             <option value="Friendly">Friendly</option>
             <option value="Roamntic">Romantic</option>
@@ -67,13 +66,16 @@ export default function RegistrationForm(props) {
 
       <div id="secondary-prompt" className={isActive ? "inactive" : "active"}>
         <h1>Ready to mingle?</h1>
-        <button onClick={startMatch}>
-          Get matched!
-        </button>
+        
+        <section>
+          <button onClick={startMatch}>
+            Get matched!
+          </button>
 
-        <button onClick={toProfile}>
-          Continue building profile.
-        </button>
+          <button onClick={toProfile}>
+            Continue building profile.
+          </button>
+        </section>
       </div>
     </div>
   )
