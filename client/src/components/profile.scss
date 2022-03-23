@@ -1,0 +1,21 @@
+#profile-main {
+  text-align: left;
+  height: 80vh;
+}
+
+.profile-user {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+
+  .user-profile-name {
+    margin-left: 1rem;
+  }
+}
+
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
