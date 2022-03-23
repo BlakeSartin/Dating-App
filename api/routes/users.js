@@ -19,9 +19,49 @@ module.exports = (knex) => {
     //   response.send(data.rows);
     // });
     knex("users")
-      .select()
+      .join(
+        "user_gender_identity",
+        "users.id",
+        "=",
+        "user_gender_identity.user_id"
+      )
+      .join(
+        "user_gender_preference",
+        "users.id",
+        "=",
+        "user_gender_preference.user_id"
+      )
+      .join(
+        "user_sexual_orientation",
+        "users.id",
+        "=",
+        "user_sexual_orientation.user_id"
+      )
+      .join(
+        "user_orientation_preference",
+        "users.id",
+        "=",
+        "user_orientation_preference.user_id"
+      )
+      .join("user_photos", "users.id", "=", "user_photos.user_id")
+      .select(
+        "users.*",
+        knex.raw(
+          "ARRAY_AGG(DISTINCT user_gender_identity.gender_id) as gender_identity"
+        ),
+        knex.raw(
+          "ARRAY_AGG(DISTINCT user_gender_preference.gender_id) as gender_preference"
+        ),
+        knex.raw(
+          "ARRAY_AGG(DISTINCT user_sexual_orientation.orientation_id) as sexual_orientation"
+        ),
+        knex.raw(
+          "ARRAY_AGG(DISTINCT user_orientation_preference.orientation_id) as orientation_preference"
+        ),
+        knex.raw("ARRAY_AGG(DISTINCT user_photos.id) as photos")
+      )
+      .groupBy("users.id")
       .then((users) => {
-        console.log(users);
         response.json(users);
       });
   });
