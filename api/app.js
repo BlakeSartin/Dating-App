@@ -17,14 +17,14 @@ const orientationsRouter = require("./routes/orientations");
 const relationshipsRouter = require("./routes/relationships");
 
 // database
-const db = require("./db");
+// const db = require("./db");
 const app = express();
 const knexConfig = require("./db/knexfile");
 const knex = require("knex")(knexConfig[ENV]);
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "jade");
 
 app.use(cors());
 app.use(logger("dev"));
@@ -55,8 +55,8 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-app.close = function () {
-  return db.end();
-};
+// app.close = function () {
+//   return db.end();
+// };
 
 module.exports = app;
