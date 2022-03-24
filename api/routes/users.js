@@ -60,6 +60,7 @@ module.exports = (knex) => {
         response.json(users);
       });
   });
+
   // get a user by their id
   router.get("/:id", (request, response) => {
     knex("users")
@@ -120,5 +121,38 @@ module.exports = (knex) => {
       });
   });
 
+  // get 10 users based on their compatability with a given user
+  router.get("/:id/match", (request, response) => {
+    knex
+      .raw(
+        `
+        SELECT id, first_name, last_name, summary FROM users
+        WHERE id IN(
+          SELECT user_id
+          FROM user_gender_identity
+          WHERE gender_id IN(
+            SELECT gender_id
+            FROM user_gender_preference
+            WHERE user_id = ?))
+        AND id IN(
+          SELECT user_id
+          FROM user_sexual_orientation
+          WHERE orientation_id IN(
+            SELECT orientation_id
+            FROM user_orientation_preference
+            WHERE user_id = ?))
+        AND id IN(
+          SELECT user_id
+          FROM user_relationship_preference
+          WHERE relationship_id IN(
+            SELECT relationship_id
+            FROM user_relationship_preference
+            WHERE user_id = ?)) 
+        LIMIT 10;
+        `,
+        [request.params.id, request.params.id, request.params.id]
+      )
+      .then((users) => response.json(users.rows));
+  });
   return router;
 };
