@@ -1,0 +1,17 @@
+#g-list-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  position: fixed;
+  bottom: 1rem;
+
+  .gender-list-btn {
+    width: 45%;
+    height: 4rem;
+  }
+}
+
+.MuiListItem-root:last-child {
+  margin-bottom: 5rem;
+}
