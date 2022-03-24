@@ -7,7 +7,35 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
+import GenderListItem from './GenderListItem';
+import "./profilebutton.scss"
+
 export default function ProfileButton(props) {
+  const genderTest = [
+    "Woman",
+    "Man",
+    "Agender",
+    "Androgynous",
+    "Bigender",
+    "Cis Man",
+    "Cis Woman",
+    "Genderfluid",
+    "Genderqueer",
+    "Gender Nonconforming",
+    "Hijra",
+    "Intersex",
+    "Non-binary",
+    "Other gender",
+    "Pangender",
+    "Transfeminine",
+    "Transgender",
+    "Trans Man",
+    "Transmasculine",
+    "Transsexual",
+    "Trans Woman",
+    "Two Spirit",
+  ];
+
   const [state, setState] = useState({top: false});
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -18,25 +46,32 @@ export default function ProfileButton(props) {
     setState({ ...state, [anchor]: open });
   };
 
+  const checkBox = (event) => {
+    console.log(event.target)
+  }
+
   const list = (anchor) => (
     props.name === "Gender" ? 
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onClick={(event) => checkBox(event)}
     >
       <List>
-          <ListItem button key="h1">
-            <ListItemText primary="This is the genders" />
-          </ListItem> 
-      </List>  
-      <List>
-          <ListItem button key="hello">
-            <ListItemText primary="This is genders" />
-          </ListItem>
+        <GenderListItem g={genderTest}/>
       </List>
+      <div id="g-list-btns">
+        <button
+          className="gender-list-btn" 
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+        <button
+          className="gender-list-btn" 
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+      </div>
     </Box>
+    
      :
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
