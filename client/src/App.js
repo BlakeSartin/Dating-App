@@ -7,7 +7,7 @@ import Chats from "./components/Chats";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // contexts
-import UserProvider from "./providers/userProvider";
+import UserProvider from "./providers/UserProvider";
 
 function App() {
   return (
