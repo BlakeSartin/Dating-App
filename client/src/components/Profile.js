@@ -23,7 +23,7 @@ export default function Profile(props) {
       <section className="profile-nav">
         <List>
           <ProfileButton name="Gender" />
-          <ProfileButton name="Preference" />
+          <ProfileButton name="Orientation" />
           <ProfileButton name="Settings" />
           <ProfileButton name="Logout" />
         </List>

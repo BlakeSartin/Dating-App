@@ -8,6 +8,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import GenderListItem from './GenderListItem';
+import OrientationListItem from './OrientationListItem';
 import "./profilebutton.scss"
 
 export default function ProfileButton(props) {
@@ -34,6 +35,29 @@ export default function ProfileButton(props) {
     "Transsexual",
     "Trans Woman",
     "Two Spirit",
+  ];
+
+  const orientationTest = [
+    "Straight",
+    "Lesbian",
+    "Gay",
+    "Bisexial",
+    "Queer",
+    "Pansexual",
+    "Questioning",
+    "Heteroflexible",
+    "Homoflexible",
+    "Asexual",
+    "Gray-sexual",
+    "Demisexual",
+    "Reciprosexual",
+    "Akiosexual",
+    "Aceflux",
+    "Grayromantic",
+    "Demiromantic",
+    "Recipromantic",
+    "Akioromantic",
+    "Aroflux",
   ];
 
   const [state, setState] = useState({top: false});
@@ -71,20 +95,39 @@ export default function ProfileButton(props) {
           onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
       </div>
     </Box>
-    
      :
+    (props.name === "Orientation" ?
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-          <ListItem button key="hello">
-            <ListItemText primary="This is preferences" />
-          </ListItem>
-      </List>
-    </Box>
+    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+    role="presentation"
+  >
+    <List>
+      <OrientationListItem o={orientationTest}/>
+    </List>
+    <div id="o-list-btns">
+        <button
+          className="orientation-list-btn" 
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+        <button
+          className="orientation-list-btn" 
+          onClick={toggleDrawer(anchor, false)}
+          onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+      </div>
+  </Box>
+    :
+  <Box
+    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+    role="presentation"
+    onClick={toggleDrawer(anchor, false)}
+    onKeyDown={toggleDrawer(anchor, false)}
+  >
+    <List>
+        <ListItem button key="hello">
+          <ListItemText primary="OTHER" />
+        </ListItem>
+    </List>
+  </Box>)
   );
 
   return (
