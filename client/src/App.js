@@ -3,20 +3,19 @@ import Cards from "./components/Cards";
 import RegistrationForm from "./components/RegistrationForm";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
-import Chats from "./components/Chats"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import Chats from "./components/Chats";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// contexts
+import UserProvider from "./providers/userProvider";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-      <Header />
-        <Switch>
+      <UserProvider>
+        <Router>
+          <Header />
+          <Switch>
             <Route path="/chat">
               <Chats />
             </Route>
@@ -30,11 +29,14 @@ function App() {
             </Route>
 
             <Route path="/">
-            <h1><Cards /></h1>
+              <h1>
+                <Cards />
+              </h1>
             </Route>
-        </Switch>
-      </Router>
-      </div>
+          </Switch>
+        </Router>
+      </UserProvider>
+    </div>
   );
 }
 
