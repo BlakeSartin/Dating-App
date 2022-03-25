@@ -91,6 +91,7 @@ const PartnerMessage = styledComponents.div`
   border-bottom-left-radius: 10%;
 `;
 
+
 const Messages = () => {
   const [yourId, setYourID] = useState();
   const [messages, setMessages] = useState([]);
@@ -98,7 +99,7 @@ const Messages = () => {
 
   const socketRef = useRef();
   useEffect(() => {
-    socketRef.current = io("localhost:9000");
+    socketRef.current = io("localhost:8000");
 
     socketRef.current.on("your id", (id) => {
       setYourID(id);
@@ -113,18 +114,18 @@ const Messages = () => {
     setMessages((oldMsgs) => [...oldMsgs, message]);
   }
 
-  function sendMessage(e) {
-    e.preventDefault();
+  function sendMessage(e){
+    e.preventDefault()
     const messageObject = {
       body: message,
       id: yourId,
-    };
-    setMessage("");
-    socketRef.current.emit("send message", messageObject);
+    }
+    setMessage("")
+    socketRef.current.emit("send message", messageObject)
   }
 
-  function handleChange(e) {
-    setMessage(e.target.value);
+  function handleChange(e){
+    setMessage(e.target.value)
   }
   return (
     <Page>
@@ -133,27 +134,28 @@ const Messages = () => {
           if (message.id === yourId) {
             return (
               <MyRow key={index}>
-                <MyMessage>{message.body}</MyMessage>
+                <MyMessage>
+                  {message.body}
+                </MyMessage>
               </MyRow>
-            );
+            )
           }
           return (
             <PartnerRow key={index}>
-              <PartnerMessage>{message.body}</PartnerMessage>
-            </PartnerRow>
-          );
+              <PartnerMessage>
+                {message.body}
+              </PartnerMessage>
+              </PartnerRow>
+          )
         })}
       </Container>
       <Form onSubmit={sendMessage}>
-        <TextArea
-          value={message}
-          onChange={handleChange}
-          placeholder={"Say something..."}
-        />
+        <TextArea value={message} onChange={handleChange} placeholder={"Say something..."} />
         <Button>Send</Button>
-      </Form>
+        </Form>
+        
     </Page>
-  );
-};
+  )
+}
 
 export default Messages;

@@ -1,5 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useState, useRef, useMemo, useEffect } from "react";
 import CardBackdrop from "./CardBackdrop";
 import TinderCard from "react-tinder-card";
 import "./cards.scss";
@@ -11,12 +10,22 @@ import {
   ExpandMore,
 } from "@mui/icons-material";
 
-//importing context
-import { userContext } from "../providers/UserProvider";
+const db = [
+  {
+    name: "prince",
+    url: "https://www.chicagotribune.com/resizer/3U1sOcVhiya2oB1GGaSO2GfYD8A=/415x508/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/NKTE7ZA6RJAAPNMPH4XN2IRRTA.jpg",
+    summary:
+      "Standing tall, and athletically built with red skin, Apolónia has a knowing feel about .soft, large brown eyes, a narrow nose, and a pointed chin. short, fine, black hair is features a side part.clothing is revealing and mismatched. A particularly noticeable feature is accent which people usually find annoying.",
+  },
+  {
+    name: "fredie mercury",
+    url: "https://cdns-images.dzcdn.net/images/artist/d690b6b1e9ff8f0a7944b2293b540966/500x500.jpg",
+    summary:
+      "Standing tall, and stocky with pink skin, Sylvaine has an unruly feel about .distrustful, large black eyes, a big nose, and a round chin. very short, straight, blonde hair is is styled with a crew cut.clothing is slightly too small and retro. A particularly noticeable feature is distinctive clothes.",
+  },
+];
 
 function Cards() {
-  const { user } = useContext(userContext);
-  const [db, setDb] = useState([]);
   const [people, setPeople] = useState(db.length - 1);
 
   const currentPeopleRef = useRef(people);
@@ -26,15 +35,8 @@ function Cards() {
       Array(db.length)
         .fill(0)
         .map((i) => React.createRef()),
-    [db.length]
+    []
   );
-
-  useEffect(() => {
-    return axios.get(`/api/users/${user.id}/match`).then((result) => {
-      console.log("db query:", result.data);
-      setDb(result.data);
-    });
-  }, [user.id]);
 
   const updatePeople = (val) => {
     setPeople(val);
@@ -86,7 +88,7 @@ function Cards() {
         </TinderCard>
       ))}
 
-      {db[people] && <CardBackdrop summary={db[people].summary} />}
+      { db[people] && <CardBackdrop summary={db[people].summary}/>}
 
       <div className="buttons">
         <IconButton className="broke_button" onClick={() => swipe("left")}>
@@ -99,7 +101,6 @@ function Cards() {
           <Favorite fontSize="large" sx={{ fontSize: 30 }} />
         </IconButton>
       </div>
-      <h1>{db.name}</h1>
     </div>
   );
 }
