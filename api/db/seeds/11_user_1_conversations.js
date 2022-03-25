@@ -1,13 +1,20 @@
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex('table_name').del()
-  await knex('table_name').insert([
-    {id: 1, colName: 'rowValue1'},
-    {id: 2, colName: 'rowValue2'},
-    {id: 3, colName: 'rowValue3'}
-  ]);
+  await knex("conversations").del();
+
+  // create array of 4 conversation for user 1
+  const conversations = [];
+  const fakeUserCount = 5;
+  for (let i = 2; i <= fakeUserCount; i++) {
+    conversations.push({
+      user_one: 1,
+      user_two: 2,
+    });
+  }
+
+  await knex("conversations").insert(conversations);
 };
