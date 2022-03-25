@@ -1,29 +1,59 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import axios from "axios";
 import { useHistory } from "react-router-dom"
+
+import RegisterListItem from "./RegisterListItem";
 import "./registrationForm.scss"
 
 export default function RegistrationForm(props) {
   const history = useHistory();
 
-  const [identity, setIdentity] = useState("")
-  const [relationship, setRelationship] = useState("")
-  const [preference, setPreference] = useState("")
+  const [gender, setGender] = useState([])
+  const [relationship, setRelationship] = useState([])
+  const [orientation, setOrientation] = useState([])
   const [isActive, setActive] = useState("false");
 
-  const registerIdentity = (event) => {
-    setIdentity(event.target.value)
+  const [gen, setGen] = useState("")
+  const [rel, setRel] = useState("")
+  const [ori, setOri] = useState("")
+
+  useEffect(() => {
+    axios.get('api/genders').then((res) => {
+      const g = res.data;
+      setGender(g);
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get('api/orientations').then((res) => {
+      const g = res.data;
+      setOrientation(g);
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get('api/relationships').then((res) => {
+      const g = res.data;
+      setRelationship(g);
+    })
+  }, []);
+  
+
+  const genderOnChange = (event) => {
+    setGen(event.target.value);
   }
 
-  const registerRelationship = (event) => {
-    setRelationship(event.target.value)
+  const orientationOnChange = (event) => {
+    setOri(event.target.value);
   }
 
-  const registerPreference = (event) => {
-    setPreference(event.target.value)
+  const preferenceOnChange = (event) => {
+    setRel(event.target.value);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    alert(`1: ${gen} 2: ${rel} 3: ${ori}`);
     setActive(!isActive);
   }
 
@@ -40,25 +70,19 @@ export default function RegistrationForm(props) {
       <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
       <form onSubmit={handleSubmit} className={isActive ? "active" : "inactive"}>
-        <label>What is your identity?</label>
-        <select value={identity} onChange={registerIdentity}>
-          <option value="heterosexual">Heterosexual</option>
-          <option value="gay">Gay</option>
-          <option value="lesbian">Lesbian</option>
+        <label>What is your gender?</label>
+        <select onChange={genderOnChange}>
+          <RegisterListItem o={gender}/>
         </select>
 
-        <label>Type of relationship you are looking for?</label>
-        <select value={relationship} onChange={registerRelationship}>
-            <option value="Friendly">Friendly</option>
-            <option value="Roamntic">Romantic</option>
-            <option value="Serious">Serious</option>
+        <label>What is your orientation?</label>
+        <select onChange={orientationOnChange}>
+          <RegisterListItem o={orientation}/>
           </select>
 
-        <label>What are your preferences?</label>
-        <select value={preference} onChange={registerPreference}>
-          <option value="heterosexual">Heterosexual</option>
-          <option value="gay">Gay</option>
-          <option value="lesbian">Lesbian</option>
+        <label>Relationship Preference?</label>
+        <select onChange={preferenceOnChange}>
+          <RegisterListItem o={relationship}/>
         </select>
 
         <input type="submit" value="Submit" />
