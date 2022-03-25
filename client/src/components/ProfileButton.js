@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
+import axios from 'axios';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,58 +10,16 @@ import ListItemText from '@mui/material/ListItemText';
 
 import GenderListItem from './GenderListItem';
 import OrientationListItem from './OrientationListItem';
+import RelationshipListItem from './RelationListItem';
 import "./profilebutton.scss"
 
 export default function ProfileButton(props) {
-  const genderTest = [
-    "Woman",
-    "Man",
-    "Agender",
-    "Androgynous",
-    "Bigender",
-    "Cis Man",
-    "Cis Woman",
-    "Genderfluid",
-    "Genderqueer",
-    "Gender Nonconforming",
-    "Hijra",
-    "Intersex",
-    "Non-binary",
-    "Other gender",
-    "Pangender",
-    "Transfeminine",
-    "Transgender",
-    "Trans Man",
-    "Transmasculine",
-    "Transsexual",
-    "Trans Woman",
-    "Two Spirit",
-  ];
-
-  const orientationTest = [
-    "Straight",
-    "Lesbian",
-    "Gay",
-    "Bisexial",
-    "Queer",
-    "Pansexual",
-    "Questioning",
-    "Heteroflexible",
-    "Homoflexible",
-    "Asexual",
-    "Gray-sexual",
-    "Demisexual",
-    "Reciprosexual",
-    "Akiosexual",
-    "Aceflux",
-    "Grayromantic",
-    "Demiromantic",
-    "Recipromantic",
-    "Akioromantic",
-    "Aroflux",
-  ];
-
   const [state, setState] = useState({top: false});
+  const [gender, setGender] = useState([]);
+  const [genderPref, setGenderPref] = useState([]);
+  const [orientation, setOrientation] = useState([]);
+  const [orientationPref, setOrientationPref] = useState([]);
+  const [relationship, setRelationship] = useState([]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -74,6 +33,29 @@ export default function ProfileButton(props) {
     console.log(event.target)
   }
 
+  useEffect(() => {
+    axios.get('api/genders').then((res) => {
+      const g = res.data;
+      setGender(g);
+      setGenderPref(g);
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get('api/orientations').then((res) => {
+      const o = res.data;
+      setOrientation(o);
+      setOrientationPref(o);
+    })
+  }, []);
+
+  useEffect(() => {
+    axios.get('api/relationships').then((res) => {
+      const r = res.data;
+      setRelationship(r);
+    })
+  }, []);
+
   const list = (anchor) => (
     props.name === "Gender" ? 
     <Box
@@ -82,7 +64,7 @@ export default function ProfileButton(props) {
       onClick={(event) => checkBox(event)}
     >
       <List>
-        <GenderListItem g={genderTest}/>
+        <GenderListItem g={gender}/>
       </List>
       <div id="g-list-btns">
         <button
@@ -98,36 +80,82 @@ export default function ProfileButton(props) {
      :
     (props.name === "Orientation" ?
     <Box
-    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-    role="presentation"
-  >
-    <List>
-      <OrientationListItem o={orientationTest}/>
-    </List>
-    <div id="o-list-btns">
-        <button
-          className="orientation-list-btn" 
-          onClick={toggleDrawer(anchor, false)}
-          onKeyDown={toggleDrawer(anchor, false)}>Save</button>
-        <button
-          className="orientation-list-btn" 
-          onClick={toggleDrawer(anchor, false)}
-          onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
-      </div>
-  </Box>
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+    >
+      <List>
+        <OrientationListItem o={orientation}/>
+      </List>
+      <div id="o-list-btns">
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+        </div>
+    </Box>
     :
-  <Box
-    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-    role="presentation"
-    onClick={toggleDrawer(anchor, false)}
-    onKeyDown={toggleDrawer(anchor, false)}
-  >
-    <List>
-        <ListItem button key="hello">
-          <ListItemText primary="OTHER" />
-        </ListItem>
-    </List>
-  </Box>)
+    (props.name === "Gender Preference" ?
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+    >
+      <List>
+        <GenderListItem g={genderPref}/>
+      </List>
+      <div id="g-list-btns">
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+        </div>
+    </Box>
+    :
+    (props.name === "Orientation Preference" ?
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+    >
+      <List>
+        <OrientationListItem o={orientationPref}/>
+      </List>
+      <div id="o-list-btns">
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+        </div>
+    </Box>
+    :
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+    >
+      <List>
+        <RelationshipListItem r={relationship}/>
+      </List>
+      <div id="o-list-btns">
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Save</button>
+          <button
+            className="orientation-list-btn" 
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}>Cancel</button>
+        </div>
+    </Box>)))
   );
 
   return (

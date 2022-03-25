@@ -34,8 +34,9 @@ export default function Profile(props) {
         <List>
           <ProfileButton name="Gender" />
           <ProfileButton name="Orientation" />
-          <ProfileButton name="Settings" />
-          <ProfileButton name="Logout" />
+          <ProfileButton name="Gender Preference" />
+          <ProfileButton name="Orientation Preference" />
+          <ProfileButton name="Preferred Relationship" />
         </List>
       </section>
     </main>
