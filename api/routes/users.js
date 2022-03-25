@@ -178,5 +178,16 @@ module.exports = (knex) => {
       },
     ]);
   });
+
+  // Add a rejected user to a certain user id
+  router.post("/reject", (request, response) => {
+    knex("user_rejects").insert([
+      {
+        user_id: request.params.user_id,
+        user_rejected: request.params.user_liked,
+      },
+    ]);
+  });
+
   return router;
 };
