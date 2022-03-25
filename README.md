@@ -10,7 +10,7 @@ In the project root use `npm install` to install all dependencies. The `package.
 
 use `psql -U development` to log in to the PostgeSQL server with username `development` and password `development` (if you are not M1, this command **must** be run in vagrant terminal).
 
-create the database with the command `CREATE DATABASE dating_database;`.
+create the database with the command `CREATE DATABASE dating_development;`.
 
 Copy the .env.example file to .env.development and fill in the necessary PostgreSQL configuration.
 
