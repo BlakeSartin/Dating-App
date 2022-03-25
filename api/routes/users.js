@@ -1,4 +1,5 @@
 const express = require("express");
+const { response } = require("../app");
 const router = express.Router();
 
 module.exports = (knex) => {
@@ -171,22 +172,38 @@ module.exports = (knex) => {
 
   // Add a liked user to a certain user id
   router.post("/like", (request, response) => {
-    knex("user_likes").insert([
-      {
-        user_id: request.params.user_id,
-        user_liked: request.params.user_liked,
-      },
-    ]);
+    knex("user_likes")
+      .insert([
+        {
+          user_id: request.body.user_id,
+          user_liked: request.body.user_liked,
+        },
+      ])
+      .then();
   });
 
   // Add a rejected user to a certain user id
   router.post("/reject", (request, response) => {
     knex("user_rejects").insert([
       {
-        user_id: request.params.user_id,
-        user_rejected: request.params.user_liked,
+        user_id: request.body.user_id,
+        user_rejected: request.body.user_liked,
       },
     ]);
+  });
+
+  // Update a user's gender identity
+  // Takes a json object that contains the user's id and an array of gender id
+  router.post("/genderidentity", (request, response) => {
+    knex("user_gender_identity")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
   });
 
   return router;
