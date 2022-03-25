@@ -13,6 +13,7 @@ const createFakeUser = () => ({
   email: faker.internet.email(),
   summary: faker.lorem.lines(2),
   profile: faker.lorem.paragraphs(),
+  avatar: faker.image.people(),
 });
 
 exports.seed = async function (knex) {

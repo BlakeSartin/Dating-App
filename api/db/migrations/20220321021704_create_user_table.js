@@ -12,6 +12,7 @@ exports.up = function (knex) {
     table.text("profile");
     table.timestamp("last_seen").defaultTo(knex.fn.now());
     table.timestamps(true, true);
+    table.text("avatar");
   });
 };
 
