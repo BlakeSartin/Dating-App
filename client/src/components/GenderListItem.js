@@ -5,9 +5,9 @@ import ListItemText from '@mui/material/ListItemText';
 export default function GenderListItem({ g }) {
   
   const genderItems = g.map((i) => (
-    <ListItem button key={i}>
-      <ListItemText primary={i} />
-      <input type="checkbox" id={i}/>
+    <ListItem button key={i.id}>
+      <ListItemText primary={i.name} />
+      <input type="checkbox" id={i.id}/>
     </ListItem>
   ));
 
