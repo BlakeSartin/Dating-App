@@ -1,4 +1,5 @@
 const express = require("express");
+const { response } = require("../app");
 const router = express.Router();
 
 module.exports = (knex) => {
@@ -147,12 +148,82 @@ module.exports = (knex) => {
           WHERE relationship_id IN(
             SELECT relationship_id
             FROM user_relationship_preference
-            WHERE user_id = ?)) 
+            WHERE user_id = ?))
+        AND id NOT IN(
+          SELECT user_liked
+          FROM user_likes
+          WHERE user_id = ?)
+        AND id NOT IN(
+          SELECT user_rejected
+          FROM user_rejects
+          WHERE user_id = ?)
         LIMIT 10;
         `,
-        [request.params.id, request.params.id, request.params.id]
+        [
+          request.params.id,
+          request.params.id,
+          request.params.id,
+          request.params.id,
+          request.params.id,
+        ]
       )
       .then((users) => response.json(users.rows));
   });
+
+  // Add a liked user to a certain user id
+  router.post("/like", (request, response) => {
+    knex("user_likes")
+      .insert([
+        {
+          user_id: request.body.user_id,
+          user_liked: request.body.user_liked,
+        },
+      ])
+      .then();
+  });
+
+  // Add a rejected user to a certain user id
+  router.post("/reject", (request, response) => {
+    knex("user_rejects").insert([
+      {
+        user_id: request.body.user_id,
+        user_rejected: request.body.user_liked,
+      },
+    ]);
+  });
+
+  // Update a user's gender identity
+  // Takes a json object that contains the user's id and an array of gender id
+  router.post("/genderidentity", (request, response) => {
+    knex("user_gender_identity")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then(() => {
+        // build new gender identity object
+        console.log("in the second step");
+        console.log("gender_identity:", request.body.gender_identity);
+        const genders = [];
+        for (const genderId of request.body.gender_identity) {
+          genders.push({
+            user_id: request.body.user_id,
+            gender_id: genderId,
+          });
+        }
+        console.log("genders:", genders);
+        // add null if array is empty
+        if (genders.length === 0) {
+          genders.push(NULL);
+        }
+
+        return knex("user_gender_identity").returning("id").insert(genders);
+      })
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
   return router;
 };
