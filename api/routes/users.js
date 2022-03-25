@@ -198,6 +198,25 @@ module.exports = (knex) => {
     knex("user_gender_identity")
       .where("user_id", request.body.user_id)
       .del()
+      .then(() => {
+        // build new gender identity object
+        console.log("in the second step");
+        console.log("gender_identity:", request.body.gender_identity);
+        const genders = [];
+        for (const genderId of request.body.gender_identity) {
+          genders.push({
+            user_id: request.body.user_id,
+            gender_id: genderId,
+          });
+        }
+        console.log("genders:", genders);
+        // add null if array is empty
+        if (genders.length === 0) {
+          genders.push(NULL);
+        }
+
+        return knex("user_gender_identity").returning("id").insert(genders);
+      })
       .then((result) => {
         response.json(result);
       })
