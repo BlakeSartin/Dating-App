@@ -70,7 +70,7 @@ function Chats({ name, message, url }) {
           sx={{ width: "100%", bgcolor: "background.paper" }}
         >
           <ListItem alignItems="flex-start">
-            <ListItemButton>
+            <ListItemButton >
               <ListItemAvatar>
                 <Avatar alt={person.name} src={person.url} />
               </ListItemAvatar>
