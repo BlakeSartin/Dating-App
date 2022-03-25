@@ -147,12 +147,36 @@ module.exports = (knex) => {
           WHERE relationship_id IN(
             SELECT relationship_id
             FROM user_relationship_preference
-            WHERE user_id = ?)) 
+            WHERE user_id = ?))
+        AND id NOT IN(
+          SELECT user_liked
+          FROM user_likes
+          WHERE user_id = ?)
+        AND id NOT IN(
+          SELECT user_rejected
+          FROM user_rejects
+          WHERE user_id = ?)
         LIMIT 10;
         `,
-        [request.params.id, request.params.id, request.params.id]
+        [
+          request.params.id,
+          request.params.id,
+          request.params.id,
+          request.params.id,
+          request.params.id,
+        ]
       )
       .then((users) => response.json(users.rows));
+  });
+
+  // Add a liked user to a certain user id
+  router.post("/like", (request, response) => {
+    knex("user_likes").insert([
+      {
+        user_id: request.params.user_id,
+        user_liked: request.params.user_liked,
+      },
+    ]);
   });
   return router;
 };
