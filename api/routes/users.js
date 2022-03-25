@@ -127,7 +127,7 @@ module.exports = (knex) => {
     knex
       .raw(
         `
-        SELECT id, first_name || ' ' || last_name AS name, summary, avatar AS url FROM users
+        SELECT id, first_name, last_name, summary FROM users
         WHERE id IN(
           SELECT user_id
           FROM user_gender_identity
