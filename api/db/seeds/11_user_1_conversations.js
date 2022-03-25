@@ -12,7 +12,7 @@ exports.seed = async function (knex) {
   for (let i = 2; i <= fakeUserCount; i++) {
     conversations.push({
       user_one: 1,
-      user_two: 2,
+      user_two: i,
     });
   }
 
