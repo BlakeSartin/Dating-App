@@ -63,4 +63,4 @@ app.use(function (err, req, res, next) {
 //   return db.end();
 // };
 
-module.exports = app;
+module.exports = { app, knex };
