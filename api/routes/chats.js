@@ -33,7 +33,7 @@ module.exports = (knex) => {
     knex
       .raw(
         `
-        SELECT users.first_name || ' ' || users.last_name AS name, avatar as url, m.message, m.time_sent AS timestamp
+        SELECT DISTINCT conversations.id AS room_id, users.first_name || ' ' || users.last_name AS name, avatar as url, m.message, m.time_sent AS timestamp
         FROM conversations JOIN users ON conversations.user_two = users.id
         JOIN (
           SELECT DISTINCT user_id, message, time_sent
