@@ -66,13 +66,15 @@ module.exports = (knex) => {
 
   // add a message
   router.post("/messages", (request, response) => {
-    knex("messages").insert([
-      {
-        user_id: request.body.user_id,
-        conversation_id: request.body.conversation_id,
-        message: request.body.message,
-      },
-    ]);
+    knex("messages")
+      .insert([
+        {
+          user_id: request.body.user_id,
+          conversation_id: request.body.conversation_id,
+          message: request.body.message,
+        },
+      ])
+      .then((result) => response.json(result));
   });
 
   return router;
