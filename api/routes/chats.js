@@ -23,14 +23,26 @@ module.exports = (knex) => {
 
   // get all chat rooms belonging to a user
   router.get("/user/:id", (request, response) => {
-    knex("conversations")
-      .select()
-      .whereRaw("user_one = ? OR user_two = ?", [
-        request.params.id,
-        request.params.id,
-      ])
+    // knex("conversations")
+    //   .join("users", "users.id", "=", "conversation.user_two")
+    //   .select("users.first_name", "users.last_name")
+    //   .whereRaw("user_one = ? OR user_two = ?", [
+    //     request.params.id,
+    //     request.params.id,
+    //   ])
+    knex
+      .raw(
+        `
+        SELECT users.first_name || ' ' || users.last_name AS name, avatar as url, m.message, m.time_sent AS timestamp
+        FROM conversations JOIN users ON conversations.user_two = users.id
+        JOIN (
+          SELECT DISTINCT user_id, message, time_sent
+          FROM messages
+        ) as m ON conversations.user_two = m.user_id;
+        `
+      )
       .then((conversations) => {
-        response.json(conversations);
+        response.json(conversations.rows);
       });
   });
 
