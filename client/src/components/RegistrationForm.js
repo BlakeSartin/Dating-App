@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import axios from "axios";
 import { useHistory } from "react-router-dom"
+import { userContext } from "../providers/UserProvider";
 
 import RegisterListItem from "./RegisterListItem";
 import "./registrationForm.scss"
 
 export default function RegistrationForm(props) {
+  const { user, setUser } = useContext(userContext);
   const history = useHistory();
 
   const [gender, setGender] = useState([])
@@ -53,7 +55,9 @@ export default function RegistrationForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(`1: ${gen} 2: ${rel} 3: ${ori}`);
+    user.gender_identity = [parseInt(gen)];
+    user.sexual_orientation = [parseInt(ori)];
+    user.relationship_preference = [parseInt(rel)];
     setActive(!isActive);
   }
 
