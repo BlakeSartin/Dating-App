@@ -200,8 +200,6 @@ module.exports = (knex) => {
       .del()
       .then(() => {
         // build new gender identity object
-        console.log("in the second step");
-        console.log("gender_identity:", request.body.gender_identity);
         const genders = [];
         for (const genderId of request.body.gender_identity) {
           genders.push({
@@ -209,13 +207,106 @@ module.exports = (knex) => {
             gender_id: genderId,
           });
         }
-        console.log("genders:", genders);
         // add null if array is empty
         if (genders.length === 0) {
           genders.push(NULL);
         }
 
         return knex("user_gender_identity").returning("id").insert(genders);
+      })
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
+  // Update a user's gender preference
+  // Takes a json object that contains the user's id and an array of gender id
+  router.post("/genderpreference", (request, response) => {
+    knex("user_gender_preference")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then(() => {
+        // build new gender preference object
+        const genders = [];
+        for (const genderId of request.body.gender_preference) {
+          genders.push({
+            user_id: request.body.user_id,
+            gender_id: genderId,
+          });
+        }
+        // add null if array is empty
+        if (genders.length === 0) {
+          genders.push(NULL);
+        }
+
+        return knex("user_gender_preference").returning("id").insert(genders);
+      })
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
+  // Update a user's sexual orientation
+  // Takes a json object that contains the user's id and an array of orientation id
+  router.post("/sexualorientation", (request, response) => {
+    knex("user_sexual_orientation")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then(() => {
+        // build new sexual orientation objects
+        const orientations = [];
+        for (const orientationId of request.body.sexual_orientation) {
+          orientations.push({
+            user_id: request.body.user_id,
+            orientation_id: orientationId,
+          });
+        }
+        // add null if array is empty
+        if (orientations.length === 0) {
+          orientations.push(NULL);
+        }
+
+        return knex("user_sexual_orientation")
+          .returning("id")
+          .insert(orientations);
+      })
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
+  // update a user's orientation preference
+  // takes a json object that contains the user's id and an array of orientation id
+  router.post("/orientationpreference", (request, response) => {
+    knex("user_orientation_preference")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then(() => {
+        // build new sexual orientation objects
+        const orientations = [];
+        for (const orientationId of request.body.orientation_preference) {
+          orientations.push({
+            user_id: request.body.user_id,
+            orientation_id: orientationId,
+          });
+        }
+        // add null if array is empty
+        if (orientations.length === 0) {
+          orientations.push(NULL);
+        }
+
+        return knex("user_orientation_preference")
+          .returning("id")
+          .insert(orientations);
       })
       .then((result) => {
         response.json(result);
