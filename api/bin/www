@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-const app = require("../app");
+const app = require("../app").app;
+// const knex = require("../app").knex;
 const debug = require("debug")("api:server");
 const http = require("http");
 const server = http.createServer(app);
@@ -12,11 +13,20 @@ const socket = require("socket.io");
 const io = socket(server, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
-  console.log("test");
+  let room = "";
+
+  socket.on("join room", (roomId) => {
+    socket.join(roomId);
+    room = roomId;
+    console.log("Joined room:", room);
+    console.log("logging room:", socket.rooms);
+    console.log("logging sids:", io.of("/").adapter.sids);
+  });
+
   socket.emit("your id", socket.id);
-  socket.on("send message", body => {
-    io.emit("message", body)
-  })
-})
+  socket.on("send message", (body) => {
+    io.to(room).emit("message", body);
+  });
+});
 
 server.listen(9000, () => console.log("server is running on port 9000"));

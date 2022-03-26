@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styledComponents from "styled-components";
 import io from "socket.io-client";
+import axios from "axios";
 
 // import user context
 import { userContext } from "../providers/UserProvider";
@@ -95,6 +96,7 @@ const PartnerMessage = styledComponents.div`
 `;
 
 const Messages = () => {
+  // console.log("component rendered");
   const { user } = useContext(userContext);
 
   const [yourId, setYourID] = useState();
@@ -102,17 +104,32 @@ const Messages = () => {
   const [message, setMessage] = useState("");
 
   const socketRef = useRef();
+
+  const roomId = 2;
+
   useEffect(() => {
-    socketRef.current = io("localhost:9000");
+    // write if statement to detect if user exists
+    if (!user.id) {
+      return;
+    }
+    axios
+      .get(`/api/chats/${roomId}/messages`)
+      .then((result) => {
+        console.log(result.data);
+        setMessages(result.data);
+      })
+      .then(() => {
+        socketRef.current = io("localhost:9000");
 
-    socketRef.current.on("your id", (id) => {
-      setYourID(id);
-    });
+        socketRef.current.emit("join room", roomId);
 
-    socketRef.current.on("message", (message) => {
-      receivedMessage(message);
-    });
-  }, []);
+        setYourID(user.id);
+
+        socketRef.current.on("message", (message) => {
+          receivedMessage(message);
+        });
+      });
+  }, [user.id]);
 
   function receivedMessage(message) {
     setMessages((oldMsgs) => [...oldMsgs, message]);
@@ -121,11 +138,20 @@ const Messages = () => {
   function sendMessage(e) {
     e.preventDefault();
     const messageObject = {
-      body: message,
-      id: yourId,
+      message: message,
+      conversation_id: roomId,
+      user_id: yourId,
     };
     setMessage("");
     socketRef.current.emit("send message", messageObject);
+    axios
+      .post(`/api/chats/messages`, messageObject)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleChange(e) {
@@ -135,16 +161,16 @@ const Messages = () => {
     <Page>
       <Container>
         {messages.map((message, index) => {
-          if (message.id === yourId) {
+          if (message.user_id === yourId) {
             return (
               <MyRow key={index}>
-                <MyMessage>{message.body}</MyMessage>
+                <MyMessage>{message.message}</MyMessage>
               </MyRow>
             );
           }
           return (
             <PartnerRow key={index}>
-              <PartnerMessage>{message.body}</PartnerMessage>
+              <PartnerMessage>{message.message}</PartnerMessage>
             </PartnerRow>
           );
         })}
@@ -153,6 +179,7 @@ const Messages = () => {
         <TextArea
           value={message}
           onChange={handleChange}
+          f
           placeholder={"Say something..."}
         />
         <Button>Send</Button>
