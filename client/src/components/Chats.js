@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./chats.scss";
 import {
   IconButton,
@@ -19,6 +20,7 @@ import { userContext } from "../providers/UserProvider";
 
 // const db = [
 //   {
+//     room_id: 2
 //     name: "Elliot Page",
 //     message:
 //       "Standing tall, and athletically built with red skin, Apolónia has a knowing feel about .soft, large brown eyes, a narrow nose, and a pointed chin. short, fine, black hair is features a side part.clothing is revealing and mismatched. A particularly noticeable feature is accent which people usually find annoying.",
@@ -85,27 +87,29 @@ function Chats({ name, message, url }) {
         >
           <ListItem alignItems="flex-start">
             <ListItemButton>
-              <ListItemAvatar>
-                <Avatar alt={person.name} src={person.url} />
-              </ListItemAvatar>
-              <ListItemText
-                className="chat"
-                primary={person.name}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      className="message_stamp"
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      <LongText content={person.message} limit={50} />
-                    </Typography>
-                    - {person.timestamp}
-                  </React.Fragment>
-                }
-              />
+              <Link to={`/chat/${person.room_id}`}>
+                <ListItemAvatar>
+                  <Avatar alt={person.name} src={person.url} />
+                </ListItemAvatar>
+                <ListItemText
+                  className="chat"
+                  primary={person.name}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        className="message_stamp"
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        <LongText content={person.message} limit={50} />
+                      </Typography>
+                      - {person.timestamp}
+                    </React.Fragment>
+                  }
+                />
+              </Link>
             </ListItemButton>
           </ListItem>
           <Divider variant="inset" component="li" />
