@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import styledComponents from "styled-components";
 import io from "socket.io-client";
+
+// import user context
+import { userContext } from "../providers/UserProvider";
 
 const Page = styledComponents.div`
   display: flex;
@@ -92,6 +95,8 @@ const PartnerMessage = styledComponents.div`
 `;
 
 const Messages = () => {
+  const { user } = useContext(userContext);
+
   const [yourId, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
