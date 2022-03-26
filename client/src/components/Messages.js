@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { useParams } from "react-router-dom";
 import styledComponents from "styled-components";
 import io from "socket.io-client";
 import axios from "axios";
@@ -96,7 +97,6 @@ const PartnerMessage = styledComponents.div`
 `;
 
 const Messages = () => {
-  // console.log("component rendered");
   const { user } = useContext(userContext);
 
   const [yourId, setYourID] = useState();
@@ -105,7 +105,7 @@ const Messages = () => {
 
   const socketRef = useRef();
 
-  const roomId = 2;
+  const roomId = useParams().person;
 
   useEffect(() => {
     // write if statement to detect if user exists
