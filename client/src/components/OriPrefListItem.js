@@ -2,13 +2,13 @@ import React, { Fragment, useState, useEffect } from "react";
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-export default function GenderListItem({ g, ug }) {
+export default function OriPrefListItem({ o, uo }) {
   const [test, setTest] = useState({});
 
   useEffect(() => {
     const temp = {};
-    g.map((a) => (
-      temp[a.id] = ug.includes(a.id) ? true : false
+    o.map((a) => (
+      temp[a.id] = uo.includes(a.id) ? true : false
     ))
     setTest(temp)
   }, []);
@@ -16,8 +16,8 @@ export default function GenderListItem({ g, ug }) {
   const handleCheck = (event) => {
     setTest({...test, [event.target.id]: event.target.checked})
   }
-
-  const genderItems = g.map((i) => (
+  
+  const orientationItems = o.map((i) => (
     <ListItem button key={i.id}>
       <ListItemText primary={i.name} />
       <input type="checkbox" id={i.id} checked={test[i.id]} onChange={handleCheck}/>
@@ -26,7 +26,7 @@ export default function GenderListItem({ g, ug }) {
 
   return (
     <Fragment>
-      {genderItems}
+      {orientationItems}
     </Fragment>
   )
 }

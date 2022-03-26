@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-export default function GenderListItem({ g, ug }) {
+export default function GenPrefListItem({ g, ug }) {
   const [test, setTest] = useState({});
 
   useEffect(() => {
