@@ -11,6 +11,8 @@ import ListItemText from '@mui/material/ListItemText';
 import GenderListItem from './GenderListItem';
 import OrientationListItem from './OrientationListItem';
 import RelationshipListItem from './RelationListItem';
+import OriPrefListItem from './OriPrefListItem';
+import GenPrefListItem from './GenPrefListItem';
 import "./profilebutton.scss"
 
 export default function ProfileButton(props) {
@@ -64,7 +66,7 @@ export default function ProfileButton(props) {
       onClick={(event) => checkBox(event)}
     >
       <List>
-        <GenderListItem g={gender}/>
+        <GenderListItem g={gender} ug={props.u.gender_identity}/>
       </List>
       <div id="g-list-btns">
         <button
@@ -84,7 +86,7 @@ export default function ProfileButton(props) {
       role="presentation"
     >
       <List>
-        <OrientationListItem o={orientation}/>
+        <OrientationListItem o={orientation} uo={props.u.sexual_orientation}/>
       </List>
       <div id="o-list-btns">
           <button
@@ -104,7 +106,7 @@ export default function ProfileButton(props) {
       role="presentation"
     >
       <List>
-        <GenderListItem g={genderPref}/>
+        <GenPrefListItem g={genderPref} ug={props.u.gender_preference}/>
       </List>
       <div id="g-list-btns">
           <button
@@ -124,7 +126,7 @@ export default function ProfileButton(props) {
       role="presentation"
     >
       <List>
-        <OrientationListItem o={orientationPref}/>
+        <OriPrefListItem o={orientationPref} uo={props.u.orientation_preference}/>
       </List>
       <div id="o-list-btns">
           <button
@@ -143,7 +145,7 @@ export default function ProfileButton(props) {
       role="presentation"
     >
       <List>
-        <RelationshipListItem r={relationship}/>
+        <RelationshipListItem r={relationship} rp={props.u.relationship_preference}/>
       </List>
       <div id="o-list-btns">
           <button
@@ -157,7 +159,7 @@ export default function ProfileButton(props) {
         </div>
     </Box>)))
   );
-
+  
   return (
     <ListItem sx={{
       bgcolor: "#1976d2",

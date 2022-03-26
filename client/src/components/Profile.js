@@ -32,11 +32,11 @@ export default function Profile(props) {
 
       <section className="profile-nav">
         <List>
-          <ProfileButton name="Gender" />
-          <ProfileButton name="Orientation" />
-          <ProfileButton name="Gender Preference" />
-          <ProfileButton name="Orientation Preference" />
-          <ProfileButton name="Preferred Relationship" />
+          <ProfileButton name="Gender" u={user} />
+          <ProfileButton name="Orientation" u={user} />
+          <ProfileButton name="Gender Preference" u={user} />
+          <ProfileButton name="Orientation Preference" u={user} />
+          <ProfileButton name="Preferred Relationship" u={user} />
         </List>
       </section>
     </main>
