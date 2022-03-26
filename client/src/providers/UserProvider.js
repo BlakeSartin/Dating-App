@@ -9,12 +9,12 @@ export default function UserProvider(props) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    document.cookie = "user_id=1";
+    // document.cookie = "user_id=1";
     const userId = document.cookie
       .split("; ")
       .find((row) => row.startsWith("user_id="))
       .split("=")[1];
-    console.log(userId);
+    console.log(typeof userId);
     return axios.get(`/api/users/${userId}`).then((res) => {
       console.log(res.data);
       setUser(res.data[0]);
