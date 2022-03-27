@@ -89,15 +89,21 @@ function Cards() {
       {db[people] && <CardBackdrop summary={db[people].summary} />}
 
       <div className="buttons">
-        <IconButton className="broke_button" onClick={() => swipe("left")}>
-          <HeartBroken fontSize="large" sx={{ fontSize: 30 }} />
-        </IconButton>
-        <IconButton className="undo_button" onClick={() => goBack()}>
-          <SettingsBackupRestore fontSize="large" sx={{ fontSize: 30 }} />
-        </IconButton>
-        <IconButton className="heart_button" onClick={() => swipe("right")}>
-          <Favorite fontSize="large" sx={{ fontSize: 30 }} />
-        </IconButton>
+        <form>
+          <IconButton className="broke_button" onClick={() => swipe("left")}>
+            <HeartBroken fontSize="large" sx={{ fontSize: 30 }} />
+          </IconButton>
+        </form>
+        <form>
+          <IconButton className="undo_button" onClick={() => goBack()}>
+            <SettingsBackupRestore fontSize="large" sx={{ fontSize: 30 }} />
+          </IconButton>
+        </form>
+        <form>
+          <IconButton className="heart_button" onClick={() => swipe("right")}>
+            <Favorite fontSize="large" sx={{ fontSize: 30 }} />
+          </IconButton>
+        </form>
       </div>
       <h1>{db.name}</h1>
     </div>
