@@ -104,7 +104,7 @@ export default function ProfileButton(props) {
             </button>
             <button
               className="gender-list-btn"
-              onClick={saveProfile}
+              onClick={toggleDrawer(anchor, false)}
               onKeyDown={toggleDrawer(anchor, false)}
             >
               Cancel
