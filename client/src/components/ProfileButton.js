@@ -50,6 +50,11 @@ export default function ProfileButton(props) {
     event.preventDefault();
     saveProfile("genderpreference");
   };
+  const handleSubmitOrientation = (event) => {
+    console.log("orientation submit");
+    event.preventDefault();
+    saveProfile("sexualorientation");
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -131,22 +136,25 @@ export default function ProfileButton(props) {
             uo={props.u.sexual_orientation}
           />
         </List>
-        <div id="o-list-btns">
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Save
-          </button>
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Cancel
-          </button>
-        </div>
+        <form onSubmit={handleSubmitOrientation}>
+          <div id="o-list-btns">
+            <button
+              type="submit"
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Save
+            </button>
+            <button
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </Box>
     ) : props.name === "Gender Preference" ? (
       <Box
