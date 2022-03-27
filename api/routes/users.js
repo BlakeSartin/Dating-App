@@ -316,5 +316,37 @@ module.exports = (knex) => {
       });
   });
 
+  // update a user's relationship preference
+  // takes a json object that contains the user's id and an array of relationship id
+  router.post("/relationshiptype", (request, response) => {
+    knex("user_relationship_preference")
+      .where("user_id", request.body.user_id)
+      .del()
+      .then(() => {
+        // build new relationship preference objects
+        const relationships = [];
+        for (const relationshipId of request.body.relationship_preference) {
+          relationships.push({
+            user_id: request.body.user_id,
+            relationship_id: relationshipId,
+          });
+        }
+        // add null if array is empty
+        if (relationships.length === 0) {
+          relationships.push(NULL);
+        }
+
+        return knex("user_orientation_preference")
+          .returning("id")
+          .insert(relationships);
+      })
+      .then((result) => {
+        response.json(result);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
   return router;
 };
