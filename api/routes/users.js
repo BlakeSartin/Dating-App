@@ -336,7 +336,7 @@ module.exports = (knex) => {
           relationships.push(NULL);
         }
 
-        return knex("user_orientation_preference")
+        return knex("user_relationship_preference")
           .returning("id")
           .insert(relationships);
       })

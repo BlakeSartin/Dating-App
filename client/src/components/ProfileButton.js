@@ -33,6 +33,7 @@ export default function ProfileButton(props) {
         gender_preference: props.u.gender_preference,
         sexual_orientation: props.u.sexual_orientation,
         orientation_preference: props.u.orientation_preference,
+        relationship_preference: props.u.relationship_preference,
       })
       .then((result) => {
         console.log(result);
@@ -59,6 +60,11 @@ export default function ProfileButton(props) {
     console.log("orientation pref submit");
     event.preventDefault();
     saveProfile("orientationpreference");
+  };
+  const handleSubmitRelationshipPref = (event) => {
+    console.log("relationship pref submit");
+    event.preventDefault();
+    saveProfile("relationshiptype");
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -230,22 +236,25 @@ export default function ProfileButton(props) {
             rp={props.u.relationship_preference}
           />
         </List>
-        <div id="o-list-btns">
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Save
-          </button>
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Cancel
-          </button>
-        </div>
+        <form onSubmit={handleSubmitRelationshipPref}>
+          <div id="o-list-btns">
+            <button
+              type="submit"
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Save
+            </button>
+            <button
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </Box>
     );
 
