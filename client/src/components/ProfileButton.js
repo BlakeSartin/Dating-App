@@ -30,6 +30,9 @@ export default function ProfileButton(props) {
       .post(`/api/users/${route}`, {
         user_id: props.u.id,
         gender_identity: props.u.gender_identity,
+        gender_preference: props.u.gender_preference,
+        sexual_orientation: props.u.sexual_orientation,
+        orientation_preference: props.u.orientation_preference,
       })
       .then((result) => {
         console.log(result);
@@ -37,7 +40,7 @@ export default function ProfileButton(props) {
   };
 
   // submit handler
-  const handleSubmit = (event) => {
+  const handleSubmitGender = (event) => {
     console.log("handling sumbit");
     event.preventDefault();
     saveProfile("genderidentity");
@@ -92,7 +95,7 @@ export default function ProfileButton(props) {
           <GenderListItem g={gender} ug={props.u.gender_identity} />
         </List>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitGender}>
           <div id="g-list-btns">
             <button
               type="submit"
