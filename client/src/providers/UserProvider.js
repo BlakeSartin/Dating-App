@@ -9,7 +9,7 @@ export default function UserProvider(props) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    // document.cookie = "user_id=1";
+    document.cookie = "user_id=1";
     const userId = document.cookie
       .split("; ")
       .find((row) => row.startsWith("user_id="))
