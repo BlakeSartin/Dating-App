@@ -39,11 +39,16 @@ export default function ProfileButton(props) {
       });
   };
 
-  // submit handler
+  // submit handlers
   const handleSubmitGender = (event) => {
     console.log("handling sumbit");
     event.preventDefault();
     saveProfile("genderidentity");
+  };
+  const handleSubmitGenderPref = (event) => {
+    console.log("gender pref submit");
+    event.preventDefault();
+    saveProfile("genderpreference");
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -151,22 +156,25 @@ export default function ProfileButton(props) {
         <List>
           <GenPrefListItem g={genderPref} ug={props.u.gender_preference} />
         </List>
-        <div id="g-list-btns">
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Save
-          </button>
-          <button
-            className="orientation-list-btn"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            Cancel
-          </button>
-        </div>
+        <form onSubmit={handleSubmitGenderPref}>
+          <div id="g-list-btns">
+            <button
+              type="submit"
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Save
+            </button>
+            <button
+              className="orientation-list-btn"
+              onClick={toggleDrawer(anchor, false)}
+              onKeyDown={toggleDrawer(anchor, false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </Box>
     ) : props.name === "Orientation Preference" ? (
       <Box
