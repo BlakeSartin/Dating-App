@@ -16,21 +16,25 @@ function App() {
     <div className="App">
     <UserProvider>
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
           <Route path="/chat/:person">
+            <Header />
             <Messages />
           </Route>
           <Route path="/chat">
+            <Header />
             <Chats />
           </Route>
           <Route path="/profile">
+            <Header />
             <Profile />
           </Route>
           <Route path="/register">
             <RegistrationForm />
           </Route>
           <Route path="/">
+            <Header />
             <h1>
               <Cards />
             </h1>

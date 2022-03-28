@@ -74,22 +74,22 @@ export default function RegistrationForm(props) {
       <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
       <form onSubmit={handleSubmit} className={isActive ? "active" : "inactive"}>
-        <label>What is your gender?</label>
-        <select onChange={genderOnChange}>
+        <label className="animate1">What is your gender?</label>
+        <select className="animate1" onChange={genderOnChange}>
           <RegisterListItem o={gender}/>
         </select>
 
-        <label>What is your orientation?</label>
-        <select onChange={orientationOnChange}>
+        <label className="animate2">What is your orientation?</label>
+        <select className="animate2" onChange={orientationOnChange}>
           <RegisterListItem o={orientation}/>
           </select>
 
-        <label>Relationship Preference?</label>
-        <select onChange={preferenceOnChange}>
+        <label className="animate3" >Relationship Preference?</label>
+        <select className="animate3" onChange={preferenceOnChange}>
           <RegisterListItem o={relationship}/>
         </select>
 
-        <input type="submit" value="Submit" />
+        <input className="animate4" type="submit" value="Submit" />
       </form>
 
       <div id="secondary-prompt" className={isActive ? "inactive" : "active"}>
