@@ -8,7 +8,6 @@ import {
   HeartBroken,
   SettingsBackupRestore,
   Favorite,
-  ExpandMore,
 } from "@mui/icons-material";
 
 //importing context
@@ -85,8 +84,9 @@ function Cards() {
           </div>
         </TinderCard>
       ))}
-
+      <div className="arrow_down">
       {db[people] && <CardBackdrop summary={db[people].summary} />}
+      </div>
 
       <div className="buttons">
         <IconButton className="broke_button" onClick={() => swipe("left")}>

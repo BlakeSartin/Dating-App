@@ -2,6 +2,7 @@ import React, { useState, useMemo, useContext, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./chats.scss";
+import { DeleteForever } from "@mui/icons-material";
 import {
   IconButton,
   List,
@@ -13,39 +14,13 @@ import {
   ListItemButton,
   Typography,
   Avatar,
+  Button,
 } from "@mui/material";
 
 //importing context
 import { userContext } from "../providers/UserProvider";
 
-// const db = [
-//   {
-//     room_id: 2
-//     name: "Elliot Page",
-//     message:
-//       "Standing tall, and athletically built with red skin, Apolónia has a knowing feel about .soft, large brown eyes, a narrow nose, and a pointed chin. short, fine, black hair is features a side part.clothing is revealing and mismatched. A particularly noticeable feature is accent which people usually find annoying.",
-//     url: "https://i.insider.com/5fc68f9250e71a00115583f4?width=600&format=jpeg&auto=webp",
-//     timestamp: "10 mins ago",
-//   },
-//   {
-//     name: "Lil Nas X",
-//     message: "Lorem Ipsum",
-//     url: "https://i.scdn.co/image/ab6761610000e5ebab6bd6e450cbc7629a9a2381",
-//     timestamp: "10 mins ago",
-//   },
-//   {
-//     name: "Laverne Cox",
-//     message: "Lorem Ipsum",
-//     url: "https://variety.com/wp-content/uploads/2020/06/laverne-cox-variety-big-ticket-podcast.jpg",
-//     timestamp: "10 mins ago",
-//   },
-//   {
-//     name: "Elton John",
-//     message: "Lorem Ipsum",
-//     url: "https://i.guim.co.uk/img/media/d4e28df5b298b942695a45f31f2d47896e59eb88/0_247_3543_2127/master/3543.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=d92405afb743d9e8d705697a1cf105ff",
-//     timestamp: "10 mins ago",
-//   },
-// ];
+
 
 function Chats({ name, message, url }) {
   const { user } = useContext(userContext);
@@ -87,6 +62,7 @@ function Chats({ name, message, url }) {
         >
           <ListItem alignItems="flex-start">
             <ListItemButton>
+              
               <Link to={`/chat/${person.room_id}`}>
                 <ListItemAvatar>
                   <Avatar alt={person.name} src={person.url} />
@@ -110,6 +86,9 @@ function Chats({ name, message, url }) {
                   }
                 />
               </Link>
+              <Button>
+                <DeleteForever />
+              </Button>
             </ListItemButton>
           </ListItem>
           <Divider variant="inset" component="li" />

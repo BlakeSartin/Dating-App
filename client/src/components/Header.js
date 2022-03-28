@@ -9,22 +9,9 @@ const header = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div">
-            <IconButton
-            className="hand_heart"
-              size="large"
-              edge="start"
-              aria-label="menu"
-              sx={{ mr: 5 }}
-            >
-              <Link to="/">
-                <VolunteerActivism fontSize="large" sx={{ fontSize: 30 }}/>
-              </Link>
-            </IconButton>
-          </Typography>
-
-          <Typography
+        <Toolbar className="navbar">
+          <Typography sx={{ mr: 2 }}/>
+        <Typography
             variant="h6"
             sx={{ flexGrow: 1 }}
             component="div"
@@ -34,24 +21,34 @@ const header = () => {
           >
             Q
           </Typography>
+          <Typography variant="h6" component="div">
+            <IconButton
+              size="large"
+              edge="start"
+              aria-label="menu"
+              
+            >
+              <Link to="/">
+                <VolunteerActivism className="hand_heart" fontSize="large" sx={{ fontSize: 30 }}/>
+              </Link>
+            </IconButton>
+          </Typography>
+          
           <IconButton
-          className="chat_bubble"
             size="large"
             edge="start"
             aria-label="menu"
-            sx={{ mr: 2 }}
           >
             <Link to="/chat">
-              <Chat fontSize="large" sx={{ fontSize: 30 }}/>
+              <Chat className="chat_bubble" fontSize="large" sx={{ fontSize: 30 }}/>
             </Link>
           </IconButton>
           <IconButton
-          className="profile_cube"
             size="large"
             edge="start"
             aria-label="menu"
           >
-            <Link to="/profile">
+            <Link className="profile_cube" to="/profile">
               <AccountBox fontSize="large" sx={{ fontSize: 30 }}/>
             </Link>
           </IconButton>

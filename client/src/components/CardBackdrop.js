@@ -15,7 +15,7 @@ export default function CardBackdrop({ summary, name }) {
   return (
     <div>
       <IconButton onClick={handleToggle}>
-        <ArrowDropDownCircle className="arrow_circle" size="large" />
+        <ArrowDropDownCircle className="arrow_circle" fontSize="large" sx={{ fontSize: 30 }} />
       </IconButton>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
