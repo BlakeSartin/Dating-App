@@ -1,9 +1,11 @@
-import React, { useState, useRef, useMemo, useEffect } from "react";
-import { IconButton, Backdrop, Button } from "@mui/material";
-import { ArrowDropDownCircle, VolunteerActivism} from "@mui/icons-material";
+import React from "react";
+import {IconButton, Backdrop} from "@mui/material";
+import {VolunteerActivism, ArrowDropDownCircle} from "@mui/icons-material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faBeat } from "@fortawesome/free-solid-svg-icons";
 import "./matchbackdrop.scss";
 
-export default function CardBackdrop({ summary, name }) {
+export default function MatchBackdrop({ summary, name }) {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -14,15 +16,15 @@ export default function CardBackdrop({ summary, name }) {
 
   return (
     <div>
-      <IconButton onClick={handleToggle}>
-        <ArrowDropDownCircle className="arrow_circle" fontSize="large" sx={{ fontSize: 30 }} />
-      </IconButton>
+       <IconButton onClick={handleToggle} className="heart_pulse">
+       <FontAwesomeIcon  icon={faHeart} beat color="pink" size="3x"/>
+        </IconButton>
       <Backdrop
         sx={{ color: "pink", zIndex: (theme) => theme.zIndex.drawer + 1}}
         open={open}
         onClick={handleClose}
       >
-        <h4 className="match"><VolunteerActivism /> Congrats!! We have found you a match!</h4>
+        <h4 className="match"><VolunteerActivism /> You can match with {name}!!</h4>
       </Backdrop>
     </div>
   );
