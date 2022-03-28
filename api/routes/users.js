@@ -171,17 +171,27 @@ module.exports = (knex) => {
   });
 
   // Add a liked user to a certain user id
+  // only inserts if a matching row doesn't already exist
   router.post("/like", (request, response) => {
     knex("user_likes")
-      .returning("id")
-      .insert([
-        {
-          user_id: request.body.user_id,
-          user_liked: request.body.user_liked,
-        },
-      ])
-      .then((result) => {
-        response.json(result);
+      .select()
+      .from("user_likes")
+      .where("user_id", request.body.user_id)
+      .andWhere("user_liked", request.body.user_liked)
+      .then((userLikesList) => {
+        if (userLikesList.length === 0) {
+          return knex("user_likes")
+            .returning("id")
+            .insert([
+              {
+                user_id: request.body.user_id,
+                user_liked: request.body.user_liked,
+              },
+            ])
+            .then((result) => {
+              response.json(result);
+            });
+        }
       });
   });
 
