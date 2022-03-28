@@ -181,7 +181,7 @@ module.exports = (knex) => {
       .then((userLikesList) => {
         if (userLikesList.length === 0) {
           return knex("user_likes")
-            .returning("id")
+            .returning("*")
             .insert([
               {
                 user_id: request.body.user_id,
@@ -192,6 +192,27 @@ module.exports = (knex) => {
               response.json(result);
             });
         }
+      })
+      .then(() => {
+        // check if liked user already liked current user
+        knex("user_likes")
+          .select()
+          .where("user_id", request.body.user_liked)
+          .andWhere("user_liked", request.body.user_id)
+          .then((mutualLike) => {
+            // if like exists, create a conversation
+            if (mutualLike.length) {
+              return knex("conversations")
+                .returning("id")
+                .insert({
+                  user_one: request.body.user_id,
+                  user_two: request.body.user_liked,
+                })
+                .then((result) => {
+                  response.json(result);
+                });
+            }
+          });
       });
   });
 
