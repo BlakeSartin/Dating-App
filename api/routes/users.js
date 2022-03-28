@@ -127,33 +127,34 @@ module.exports = (knex) => {
     knex
       .raw(
         `
-        SELECT id, first_name || ' ' || last_name AS name, summary, avatar AS url FROM users
-        WHERE id IN(
+        SELECT users.id, first_name || ' ' || last_name AS name, summary, avatar AS url, user_liked IS NOT NULL AS liked_you FROM users
+        LEFT JOIN user_likes ON users.id = user_likes.user_id
+        WHERE users.id IN(
           SELECT user_id
           FROM user_gender_identity
           WHERE gender_id IN(
             SELECT gender_id
             FROM user_gender_preference
             WHERE user_id = ?))
-        AND id IN(
+        AND users.id IN(
           SELECT user_id
           FROM user_sexual_orientation
           WHERE orientation_id IN(
             SELECT orientation_id
             FROM user_orientation_preference
             WHERE user_id = ?))
-        AND id IN(
+        AND users.id IN(
           SELECT user_id
           FROM user_relationship_preference
           WHERE relationship_id IN(
             SELECT relationship_id
             FROM user_relationship_preference
             WHERE user_id = ?))
-        AND id NOT IN(
+        AND users.id NOT IN(
           SELECT user_liked
           FROM user_likes
           WHERE user_id = ?)
-        AND id NOT IN(
+        AND users.id NOT IN(
           SELECT user_rejected
           FROM user_rejects
           WHERE user_id = ?)
