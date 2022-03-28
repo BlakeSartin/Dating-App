@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import styledComponents from "styled-components";
 import io from "socket.io-client";
 import axios from "axios";
+import { Send } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
 // import user context
 import { userContext } from "../providers/UserProvider";
@@ -19,7 +21,7 @@ const Page = styledComponents.div`
 const Container = styledComponents.div`
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 800px;
   max-height: 500px;
   overflow: auto;
   width: 400px;
@@ -29,11 +31,12 @@ const Container = styledComponents.div`
   margin-top: 25px;
 `;
 
+
 const TextArea = styledComponents.textarea`
-  width: 98%;
-  height: 100px;
+  width: 84%;
+  height: 40px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 1px;
   padding-left: 10px;
   padding-top: 10px;
   font-size: 17px;
@@ -49,16 +52,18 @@ const TextArea = styledComponents.textarea`
 `;
 
 const Button = styledComponents.button`
-  background-color: pink;
-  width: 100%;
+  background-color: lightblue;
+  width: 15%;
   border: none;
-  height: 50px;
+  height: 55px;
   border-radius: 10px;
   color: #46516e;
   font-size: 17px;
 `;
 
 const Form = styledComponents.form`
+display:flex;
+ flex-direction:row;
   width: 400px;
 `;
 
@@ -71,13 +76,13 @@ const MyRow = styledComponents.div`
 
 const MyMessage = styledComponents.div`
   width: 45%;
-  background-color: pink;
-  color: #46516e;
+  background-color: lightblue;
+  color: black;
+  border: 1px solid lightgray;
   padding: 10px;
   margin-right: 5px;
   text-align: center;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
+  border-radius:15%;
 `;
 
 const PartnerRow = styledComponents(MyRow)`
@@ -86,14 +91,13 @@ const PartnerRow = styledComponents(MyRow)`
 
 const PartnerMessage = styledComponents.div`
   width: 45%;
-  background-color: transparent;
-  color: lightgray;
+  background-color: lightpink;
+  color: black;
   border: 1px solid lightgray;
   padding: 10px;
   margin-left: 5px;
   text-align: center;
-  border-top-left-radius: 10%;
-  border-bottom-left-radius: 10%;
+  border-radius:15%;
 `;
 
 const Messages = () => {
@@ -182,7 +186,7 @@ const Messages = () => {
           f
           placeholder={"Say something..."}
         />
-        <Button>Send</Button>
+        <Button><Send /></Button>
       </Form>
     </Page>
   );
