@@ -15,9 +15,13 @@ export default function RegistrationForm(props) {
   const [orientation, setOrientation] = useState([])
   const [isActive, setActive] = useState("false");
 
-  const [gen, setGen] = useState("")
-  const [rel, setRel] = useState("")
-  const [ori, setOri] = useState("")
+  const [gen, setGen] = useState()
+  const [rel, setRel] = useState()
+  const [ori, setOri] = useState()
+
+  const [style, setStyle] = useState("animate1");
+  const [style2, setStyle2] = useState("animate2");
+  const [style3, setStyle3] = useState("animate3");
 
   useEffect(() => {
     axios.get('api/genders').then((res) => {
@@ -43,22 +47,29 @@ export default function RegistrationForm(props) {
 
   const genderOnChange = (event) => {
     setGen(event.target.value);
+    setStyle("animate1 selected");
   }
 
   const orientationOnChange = (event) => {
     setOri(event.target.value);
+    setStyle2("animate2 selected");
   }
 
   const preferenceOnChange = (event) => {
     setRel(event.target.value);
+    setStyle3("animate3 selected");
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    user.gender_identity = [parseInt(gen)];
-    user.sexual_orientation = [parseInt(ori)];
-    user.relationship_preference = [parseInt(rel)];
-    setActive(!isActive);
+    if(gen === undefined || rel === undefined || ori === undefined) {
+      alert("Please fill out the form");
+    } else {
+      user.gender_identity = [parseInt(gen)];
+      user.sexual_orientation = [parseInt(ori)];
+      user.relationship_preference = [parseInt(rel)];
+      setActive(!isActive);
+    }
   }
 
   const startMatch = () => {
@@ -75,17 +86,20 @@ export default function RegistrationForm(props) {
 
       <form onSubmit={handleSubmit} className={isActive ? "active" : "inactive"}>
         <label className="animate1">What is your gender?</label>
-        <select className="animate1" onChange={genderOnChange}>
+        <select className={style} onChange={genderOnChange}>
+          <option disabled selected value> -- select an option -- </option>
           <RegisterListItem o={gender}/>
         </select>
 
         <label className="animate2">What is your orientation?</label>
-        <select className="animate2" onChange={orientationOnChange}>
+        <select className={style2} onChange={orientationOnChange}>
+          <option disabled selected value> -- select an option -- </option>
           <RegisterListItem o={orientation}/>
           </select>
 
         <label className="animate3" >Relationship Preference?</label>
-        <select className="animate3" onChange={preferenceOnChange}>
+        <select className={style3} onChange={preferenceOnChange}>
+          <option disabled selected value> -- select an option -- </option>
           <RegisterListItem o={relationship}/>
         </select>
 
