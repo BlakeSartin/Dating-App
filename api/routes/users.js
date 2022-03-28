@@ -173,13 +173,16 @@ module.exports = (knex) => {
   // Add a liked user to a certain user id
   router.post("/like", (request, response) => {
     knex("user_likes")
+      .returning("id")
       .insert([
         {
           user_id: request.body.user_id,
           user_liked: request.body.user_liked,
         },
       ])
-      .then();
+      .then((result) => {
+        response.json(result);
+      });
   });
 
   // Add a rejected user to a certain user id
