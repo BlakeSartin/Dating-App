@@ -87,6 +87,26 @@ function Cards() {
         console.log(result);
       });
   };
+
+  const handleReject = (event) => {
+    console.log("db", db);
+
+    event.preventDefault();
+    // get the index of the person who was rejected
+    const index = people + 1;
+    console.log(index);
+    // get the id of the user at that index in db state
+    console.log("rejected user's id", db[index].id);
+    // post to the database with that user's id to add the reject
+    axios
+      .post(`/api/users/reject`, {
+        user_id: user.id,
+        user_rejected: db[index].id,
+      })
+      .then((result) => {
+        console.log(result);
+      });
+  };
   return (
     <div>
       {db.map((person, index) => (
@@ -107,12 +127,17 @@ function Cards() {
         </TinderCard>
       ))}
       <div className="arrow_down">
-      {db[people] && <CardBackdrop summary={db[people].summary} />}
+        {db[people] && <CardBackdrop summary={db[people].summary} />}
       </div>
 
       <div className="buttons">
-        <form>
-          <IconButton className="broke_button" onClick={() => swipe("left")}>
+        <form id="reject" onSubmit={handleReject}>
+          <IconButton
+            form="reject"
+            type="submit"
+            className="broke_button"
+            onClick={() => swipe("left")}
+          >
             <HeartBroken fontSize="large" sx={{ fontSize: 30 }} />
           </IconButton>
         </form>
