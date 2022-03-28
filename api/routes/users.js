@@ -219,12 +219,16 @@ module.exports = (knex) => {
 
   // Add a rejected user to a certain user id
   router.post("/reject", (request, response) => {
-    knex("user_rejects").insert([
-      {
-        user_id: request.body.user_id,
-        user_rejected: request.body.user_liked,
-      },
-    ]);
+    knex("user_rejects")
+      .insert([
+        {
+          user_id: request.body.user_id,
+          user_rejected: request.body.user_rejected,
+        },
+      ])
+      .then((result) => {
+        response.json(result);
+      });
   });
 
   // Update a user's gender identity
