@@ -22,6 +22,7 @@ import { userContext } from "../providers/UserProvider";
 
 
 
+
 function Chats({ name, message, url }) {
   const { user } = useContext(userContext);
   const [db, setDb] = useState([]);
@@ -44,7 +45,7 @@ function Chats({ name, message, url }) {
   const LongText = ({ content, limit }) => {
     if (content.length <= limit) {
       // there is nothing more to show
-      return <div>{content}</div>;
+      return <div className="chat_message">{content}</div>;
     }
     // In the final case, we show a text with ellipsis and a `Read more` button
     const toShow = content.substring(0, limit) + "...";
@@ -63,33 +64,35 @@ function Chats({ name, message, url }) {
           <ListItem alignItems="flex-start">
             <ListItemButton>
               
-              <Link to={`/chat/${person.room_id}`}>
+              <Link to={`/chat/${person.room_id}`} style={{ textDecoration: 'none' }}>
                 <ListItemAvatar>
                   <Avatar alt={person.name} src={person.url} />
                 </ListItemAvatar>
-                <ListItemText
-                  className="chat"
-                  primary={person.name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        className="message_stamp"
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        <LongText content={person.message} limit={50} />
-                      </Typography>
-                      - {person.timestamp}
-                    </React.Fragment>
-                  }
-                />
+          
+                <ListItemText className="chat"
+                  primary={`${person.name} :`}
+                  secondary={ <React.Fragment >
+                    <Typography
+                      className="message_stamp"
+                      sx={{ display: "inline"}}
+                      component="span"
+                      variant="body2"
+                      color="lightblue"
+                      fontSize={"large"}
+                      
+                    >
+                    <LongText  content={person.message} limit={50} /> - {person.timestamp}
+                     
+                    </Typography>
+                  </React.Fragment>}
+                  >
+                  </ListItemText>
               </Link>
-              <Button>
+             
+            </ListItemButton>
+            <Button>
                 <DeleteForever />
               </Button>
-            </ListItemButton>
           </ListItem>
           <Divider variant="inset" component="li" />
         </List>
