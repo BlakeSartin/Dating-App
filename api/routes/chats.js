@@ -33,13 +33,25 @@ module.exports = (knex) => {
     knex
       .raw(
         `
-        SELECT DISTINCT conversations.id AS room_id, users.first_name || ' ' || users.last_name AS name, avatar as url, m.message, m.time_sent AS timestamp
-        FROM conversations JOIN users ON conversations.user_two = users.id
-        JOIN (
-          SELECT DISTINCT user_id, message, time_sent
+        SELECT conversations.id AS room_id,
+          users.first_name || ' ' || users.last_name AS name,
+          avatar as url,
+          recent_messages.message
+        FROM conversations
+        LEFT JOIN users ON conversations.user_two = users.id
+        LEFT JOIN (
+          SELECT messages.conversation_id, message
           FROM messages
-        ) as m ON conversations.user_two = m.user_id;
-        `
+            JOIN (
+              SELECT MAX(id) as id, conversation_id
+              FROM messages
+              GROUP BY conversation_id
+          ) AS temp_message ON temp_message.id = messages.id
+        ) AS recent_messages ON recent_messages.conversation_id = conversations.id
+        WHERE conversations.user_one = ?
+        ORDER BY room_id DESC;
+        `,
+        [request.params.id]
       )
       .then((conversations) => {
         response.json(conversations.rows);
