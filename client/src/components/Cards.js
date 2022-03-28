@@ -69,6 +69,25 @@ function Cards() {
     await childRefs[newPeople].current.restoreCard();
   };
 
+  const handleLike = (event) => {
+    console.log("db", db);
+
+    event.preventDefault();
+    // get the index of the person who was liked
+    const index = people + 1;
+    console.log(index);
+    // get the id of the user at that index in db state
+    console.log("liked user's id", db[index].id);
+    // post to the database with that user's id to add the like
+    axios
+      .post(`/api/users/like`, {
+        user_id: user.id,
+        user_liked: db[index].id,
+      })
+      .then((result) => {
+        console.log(result);
+      });
+  };
   return (
     <div>
       {db.map((person, index) => (
@@ -102,8 +121,13 @@ function Cards() {
             <SettingsBackupRestore fontSize="large" sx={{ fontSize: 30 }} />
           </IconButton>
         </form>
-        <form>
-          <IconButton className="heart_button" onClick={() => swipe("right")}>
+        <form id="like" onSubmit={handleLike}>
+          <IconButton
+            form="like"
+            type="submit"
+            className="heart_button"
+            onClick={() => swipe("right")}
+          >
             <Favorite fontSize="large" sx={{ fontSize: 30 }} />
           </IconButton>
         </form>
