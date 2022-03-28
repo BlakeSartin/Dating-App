@@ -36,11 +36,12 @@ module.exports = (knex) => {
         SELECT conversations.id AS room_id,
           users.first_name || ' ' || users.last_name AS name,
           avatar as url,
-          recent_messages.message
+          recent_messages.message,
+          recent_messages.time_sent as timestamp
         FROM conversations
         LEFT JOIN users ON conversations.user_two = users.id
         LEFT JOIN (
-          SELECT messages.conversation_id, message
+          SELECT messages.conversation_id, message, time_sent
           FROM messages
             JOIN (
               SELECT MAX(id) as id, conversation_id
