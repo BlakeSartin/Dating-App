@@ -18,11 +18,11 @@ export default function CardBackdrop({ summary, name }) {
         <ArrowDropDownCircle className="arrow_circle" fontSize="large" sx={{ fontSize: 30 }} />
       </IconButton>
       <Backdrop
-        sx={{ color: "pink", zIndex: (theme) => theme.zIndex.drawer + 1}}
+        sx={{ color: "aquamarine", zIndex: (theme) => theme.zIndex.drawer + 1}}
         open={open}
         onClick={handleClose}
       >
-        <h4>{summary}</h4>
+        <h4 className="backdrop_text">{summary}</h4>
       </Backdrop>
     </div>
   );

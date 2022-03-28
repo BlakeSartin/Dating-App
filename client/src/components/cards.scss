@@ -29,7 +29,7 @@
 
 .buttons {
   position:relative;
-  top: 70vh;
+  top: 65vh;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -61,6 +61,14 @@
   display: flex;
   justify-content: center;
   background-color: aquamarine;
+}
+
+.heart_pulse {
+  position: relative;
+  top: 62vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 

@@ -2,14 +2,15 @@ import React, { useState, useRef, useMemo, useEffect, useContext } from "react";
 import axios from "axios";
 import CardBackdrop from "./CardBackdrop";
 import TinderCard from "react-tinder-card";
+import MatchBackdrop from "./MatchBackDrop";
 import "./cards.scss";
-import { IconButton, Button } from "@mui/material";
+import { IconButton, Button, Icon } from "@mui/material";
 import {
   HeartBroken,
   SettingsBackupRestore,
   Favorite,
+  SosOutlined,
 } from "@mui/icons-material";
-
 //importing context
 import { userContext } from "../providers/UserProvider";
 
@@ -58,10 +59,7 @@ function Cards() {
   };
 
   const swiped = (direction, nameToDelete, index) => {
-    console.log(direction);
-    console.log(index);
     // get the id of the user at that index in db state
-
     // post to the database with that user's id to add the like
     if (direction === "right") {
       console.log("liked user's id", db[index].id);
@@ -118,6 +116,11 @@ function Cards() {
       <div className="arrow_down">
         {db[people] && <CardBackdrop summary={db[people].summary} />}
       </div>
+
+      <div>
+        {(db[people] && db[people].liked_you) ? <MatchBackdrop name={db[people].name}/>: ''} 
+      </div>
+
 
       <div className="buttons">
         <IconButton className="broke_button" onClick={() => swipe("left")}>
