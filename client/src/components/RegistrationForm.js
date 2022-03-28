@@ -96,11 +96,11 @@ export default function RegistrationForm(props) {
         <h1>Ready to mingle?</h1>
         
         <section>
-          <button onClick={startMatch}>
+          <button onClick={startMatch} className="animate5">
             Get matched!
           </button>
 
-          <button onClick={toProfile}>
+          <button onClick={toProfile} className="animate1">
             Continue building profile.
           </button>
         </section>

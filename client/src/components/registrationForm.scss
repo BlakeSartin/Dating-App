@@ -63,9 +63,13 @@ form {
   button:first-child {
     margin-top: 35%;
     margin-bottom: 7rem;
+    position: relative;
+    left: 100%;
   }
 
   button {
+    position: relative;
+    right: 100%;
     background-color: #fff;
     border: black solid 1.5px;
     border-radius: 1rem;
@@ -83,15 +87,19 @@ form {
 
 // Animations
 .animate1 {
-  animation: 1s ease-out 1s 1 slideInLeft forwards;
+  animation: 0.8s ease-out 1s 1 slideInLeft forwards;
 }
 
 .animate2 {
-  animation: 1s ease-out 1.5s 1 slideInLeft forwards;
+  animation: 0.8s ease-out 1.5s 1 slideInLeft forwards;
 }
 
 .animate3 {
-  animation: 1s ease-out 2s 1 slideInLeft forwards;
+  animation: 0.8s ease-out 2s 1 slideInLeft forwards;
+}
+
+.animate5 {
+  animation: 0.8s ease-out 1.5s 1 slideInRight forwards;
 }
 
 @keyframes slideInLeft {
@@ -103,11 +111,20 @@ form {
   }
 }
 
-.animate4 {
-  animation: 1s ease-out 2s 1 slideInLeft1 forwards;
+@keyframes slideInRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-125%);
+  }
 }
 
-@keyframes slideInLeft1 {
+.animate4 {
+  animation: 0.8s ease-out 2s 1 slideUp forwards;
+}
+
+@keyframes slideUp {
   0% {
     transform: translateY(0%);
   }
