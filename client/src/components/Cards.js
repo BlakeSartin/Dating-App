@@ -30,6 +30,9 @@ function Cards() {
   );
 
   useEffect(() => {
+    if (!user.id) {
+      return;
+    }
     return axios.get(`/api/users/${user.id}/match`).then((result) => {
       console.log("db query:", result.data);
       setDb(result.data);
