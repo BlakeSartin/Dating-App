@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
 import { IconButton, Backdrop, Button } from "@mui/material";
-import { ArrowDropDownCircle } from "@mui/icons-material";
-import "./card_backdrop.scss";
+import { ArrowDropDownCircle, VolunteerActivism} from "@mui/icons-material";
+import "./matchbackdrop.scss";
 
 export default function CardBackdrop({ summary, name }) {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +22,7 @@ export default function CardBackdrop({ summary, name }) {
         open={open}
         onClick={handleClose}
       >
-        <h4>{summary}</h4>
+        <h4 className="match"><VolunteerActivism /> Congrats!! We have found you a match!</h4>
       </Backdrop>
     </div>
   );
