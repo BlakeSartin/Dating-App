@@ -16,11 +16,16 @@ form {
   padding-top: 4.5rem;
 
   label {
-    margin-left: 10%;
+    font-weight: bold;
+    margin-right: 10%;
     margin-bottom: 5px;
+    position: relative;
+    right: 100%;
   }
 
   select {
+    position: relative;
+    right: 100%;
     border-radius: 1rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -31,12 +36,16 @@ form {
   }
 
   input[type=submit] {
-    background-color: #be5555;
+    position: relative;
+    top: 40%;
+    background-color: #1976d2;
     border-radius: 5rem;
     border: none;
     color: #ffff;
-    height: 5rem;
-    width: 5rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 7rem;
+    width: 7rem;
     margin: 0 auto;
   }
 }
@@ -69,5 +78,40 @@ form {
     background-color: #be5555;
     border: #be5555 solid 2px;
     color: #fff;
+  }
+}
+
+// Animations
+.animate1 {
+  animation: 1s ease-out 1s 1 slideInLeft forwards;
+}
+
+.animate2 {
+  animation: 1s ease-out 1.5s 1 slideInLeft forwards;
+}
+
+.animate3 {
+  animation: 1s ease-out 2s 1 slideInLeft forwards;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(125%);
+  }
+}
+
+.animate4 {
+  animation: 1s ease-out 2s 1 slideInLeft1 forwards;
+}
+
+@keyframes slideInLeft1 {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-200%);
   }
 }
