@@ -2,6 +2,10 @@
   display: none;
 }
 
+.selected {
+  border: #1976d2 3px solid;
+}
+
 // Initial register prompt
 .register-div h1 {
   text-align: center;
@@ -27,6 +31,7 @@ form {
     position: relative;
     right: 100%;
     border-radius: 1rem;
+    border: #eb4b4b 3px solid;
     text-align: center;
     margin-bottom: 1rem;
     width: 80%;
