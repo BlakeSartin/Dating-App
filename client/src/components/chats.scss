@@ -1,20 +1,26 @@
 .chat_list {
-  padding: 1vh;
   margin-top: 2vh;
 }
 
 .chat {
 display: flex;
- margin-left: 2vh;
-  
 }
+
 .message_stamp {
   position: relative;
   display: flex;
   justify-content: space-between;
 }
 .chat_message {
-  padding-left: 3vh;
+  padding-left: 1vh;
 }
+
+.time_text {
+  font-size: small;
+  color: grey;
+  padding-left: 1vh;
+}
+
+
 
 
