@@ -1,19 +1,24 @@
 .inactive {
   display: none;
 }
+.logo{
+  text-align: center;
+}
 
 .selected {
   border: #1976d2 2px solid;
   background-color: #1976d2;
   color: #fff;
   font-weight: bold;
+  font-family:"Snell Roundhand, cursive"
 }
 
 // Initial register prompt
 .register-div h1 {
   text-align: center;
   margin-top: 20%;
-  margin-bottom: 3rem;
+  margin-bottom: 3rem;;
+  font-family:"Snell Roundhand, cursive"
 }
 
 form {
@@ -28,14 +33,15 @@ form {
     margin-bottom: 5px;
     position: relative;
     right: 100%;
+    font-family:"Snell Roundhand, cursive"
   }
 
   select {
     position: relative;
     right: 100%;
     border-radius: 1rem;
-    border: #eb4b4b 2px solid;
-    background-color: #eb4b4b;
+    border: pink 2px solid;
+    background-color: pink;
     color: #fff;
     font-weight: bold;
     text-align: center;
