@@ -21,9 +21,6 @@ import {
 //importing context
 import { userContext } from "../providers/UserProvider";
 
-
-
-
 function Chats({ name, message, url }) {
   const { user } = useContext(userContext);
   const [db, setDb] = useState([]);
@@ -64,36 +61,46 @@ function Chats({ name, message, url }) {
         >
           <ListItem alignItems="flex-start">
             <ListItemButton>
-              
-              <Link to={`/chat/${person.room_id}`} style={{ textDecoration: 'none' }}>
+              <Link
+                to={`/chat/${person.room_id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <ListItemAvatar>
                   <Avatar alt={person.name} src={person.url} />
                 </ListItemAvatar>
-          
-                <ListItemText className="chat"
+
+                <ListItemText
+                  className="chat"
                   primary={`${person.name} :`}
-                  secondary={ <React.Fragment >
-                    <Typography
-                      className="message_stamp"
-                      sx={{ display: "inline"}}
-                      component="span"
-                      variant="body2"
-                      color="lightblue"
-                      fontSize={"large"}
-                      
-                    >
-                    <LongText  content={person.message} limit={50} />
-                    <Moment fromNow>{person.timestamp}</Moment>
-                    </Typography>
-                  </React.Fragment>}
-                  >
-                  </ListItemText>
+
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        className="message_stamp"
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="lightblue"
+                        fontSize={"large"}
+                      >
+                        <LongText
+                          content={
+                            person.message
+                              ? person.message
+                              : "You're matched! Start chatting!"
+                          }
+                          limit={50}
+                        />
+                      <Moment fromNow>{person.timestamp}</Moment>
+                      </Typography>
+                    </React.Fragment>
+                  }
+                ></ListItemText>
               </Link>
-             
             </ListItemButton>
             <Button>
-                <DeleteForever />
-              </Button>
+              <DeleteForever />
+            </Button>
           </ListItem>
           <Divider variant="inset" component="li" />
         </List>

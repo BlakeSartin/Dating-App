@@ -5,3 +5,10 @@
   justify-content: space-evenly;
   color: white !important;
 }
+
+.MuiBackdrop-root {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-left: 5vh !important;
+}
