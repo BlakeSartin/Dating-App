@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
+import Moment from 'react-moment';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./chats.scss";
@@ -71,6 +72,7 @@ function Chats({ name, message, url }) {
                 <ListItemText
                   className="chat"
                   primary={`${person.name} :`}
+
                   secondary={
                     <React.Fragment>
                       <Typography
@@ -88,8 +90,8 @@ function Chats({ name, message, url }) {
                               : "You're matched! Start chatting!"
                           }
                           limit={50}
-                        />{" "}
-                        - {person.timestamp}
+                        />
+                      <Moment fromNow>{person.timestamp}</Moment>
                       </Typography>
                     </React.Fragment>
                   }
