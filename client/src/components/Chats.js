@@ -102,7 +102,7 @@ function Chats({ name, message, url }) {
                               ? person.message
                               : "You're matched! Start chatting!"
                           }
-                          limit={6}
+                          limit={15}
                         />
                       <GetTimeStamp  value={person.timestamp} />
                       </Typography>
