@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
+import Moment from 'react-moment';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./chats.scss";
@@ -81,8 +82,8 @@ function Chats({ name, message, url }) {
                       fontSize={"large"}
                       
                     >
-                    <LongText  content={person.message} limit={50} /> - {person.timestamp}
-                     
+                    <LongText  content={person.message} limit={50} />
+                    <Moment fromNow>{person.timestamp}</Moment>
                     </Typography>
                   </React.Fragment>}
                   >
