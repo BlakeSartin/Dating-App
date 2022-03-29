@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react"
 import axios from "axios";
+import PropTypes from 'prop-types';
 import { useHistory } from "react-router-dom"
 import { userContext } from "../providers/UserProvider";
-
+import { AppBar, Toolbar, Box, Typography, Container } from "@mui/material";
 import RegisterListItem from "./RegisterListItem";
 import "./registrationForm.scss"
 
@@ -44,6 +45,7 @@ export default function RegistrationForm(props) {
     })
   }, []);
   
+  
 
   const genderOnChange = (event) => {
     setGen(event.target.value);
@@ -81,7 +83,30 @@ export default function RegistrationForm(props) {
   }
 
   return (
+   
     <div className="register-div">
+       <Box sx={{ flexGrow: 1 }}>
+         
+      <AppBar sx={{ top: 'auto', bottom: 0 }} position="relative">
+        <Toolbar className="navbar">
+          <Typography/>
+        <Typography
+            variant="h6"
+            sx={{ flexGrow: 1 }}
+            component="div"
+            size="large"
+            style={{ fontSize: 50 }}
+            fontFamily="Snell Roundhand, cursive"
+          >
+             <Container className="logo">
+            Querry
+            </Container>
+          </Typography>
+          
+          </Toolbar>
+          </AppBar>
+         
+          </Box>
       <h1 className={isActive ? "active" : "inactive"}>Let's get to know you!</h1>
 
       <form onSubmit={handleSubmit} className={isActive ? "active" : "inactive"}>

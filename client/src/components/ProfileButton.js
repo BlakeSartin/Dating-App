@@ -123,6 +123,7 @@ export default function ProfileButton(props) {
               className="gender-list-btn"
               onClick={toggleDrawer(anchor, false)}
               onKeyDown={toggleDrawer(anchor, false)}
+              fontFamily="Snell Roundhand, cursive"
             >
               Save
             </button>
