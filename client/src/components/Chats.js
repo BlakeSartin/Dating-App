@@ -20,6 +20,7 @@ import {
 
 //importing context
 import { userContext } from "../providers/UserProvider";
+import moment from "moment";
 
 function Chats({ name, message, url }) {
   const { user } = useContext(userContext);
@@ -47,8 +48,19 @@ function Chats({ name, message, url }) {
     }
     // In the final case, we show a text with ellipsis and a `Read more` button
     const toShow = content.substring(0, limit) + "...";
-    return <div>{toShow}</div>;
+    return <div className="chat_message">{toShow}</div>;
   };
+
+  const GetTimeStamp = ({value}) => {
+    if (value === undefined) {
+      return '';
+    }else if (value === null) {
+      return '';
+    }else if (value == '') {
+      return '';
+    }
+    return <div className="time_text">{moment(value).fromNow()}</div>
+  }
 
   return (
     <div>
@@ -84,14 +96,15 @@ function Chats({ name, message, url }) {
                         fontSize={"large"}
                       >
                         <LongText
+                        className="message_text"
                           content={
                             person.message
                               ? person.message
                               : "You're matched! Start chatting!"
                           }
-                          limit={50}
+                          limit={6}
                         />
-                      <Moment fromNow>{person.timestamp}</Moment>
+                      <GetTimeStamp  value={person.timestamp} />
                       </Typography>
                     </React.Fragment>
                   }
