@@ -127,8 +127,19 @@ module.exports = (knex) => {
     knex
       .raw(
         `
-        SELECT users.id, first_name || ' ' || last_name AS name, summary, avatar AS url, user_liked IS NOT NULL AS liked_you FROM users
+        SELECT users.id,
+          first_name || ' ' || last_name AS name,
+          summary,
+          avatar AS url,
+          user_liked IS NOT NULL AS liked_you,
+          ARRAY_AGG(DISTINCT sexual_orientations.name) as sexual_orientation,
+          ARRAY_AGG(DISTINCT genders.name) as gender_identity
+        FROM users
         LEFT JOIN user_likes ON users.id = user_likes.user_id
+        JOIN user_gender_identity ON users.id = user_gender_identity.user_id
+        JOIN genders ON user_gender_identity.gender_id = genders.id
+        JOIN user_sexual_orientation ON users.id = user_sexual_orientation.user_id
+        JOIN sexual_orientations ON user_sexual_orientation.orientation_id = sexual_orientations.id
         WHERE users.id IN(
           SELECT user_id
           FROM user_gender_identity
@@ -158,6 +169,7 @@ module.exports = (knex) => {
           SELECT user_rejected
           FROM user_rejects
           WHERE user_id = ?)
+        GROUP BY users.id, user_likes.user_liked
         LIMIT 10;
         `,
         [
