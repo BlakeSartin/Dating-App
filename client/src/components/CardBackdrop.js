@@ -31,11 +31,13 @@ export default function CardBackdrop({
         onClick={handleClose}
       >
         <h4 className="backdrop_text">
+          |
           {genderIdentity.map((e) => {
             return " " + e + " |";
           })}
         </h4>
         <h4 className="backdrop_text">
+          |
           {sexualOrientation.map((e) => {
             return " " + e + " |";
           })}
