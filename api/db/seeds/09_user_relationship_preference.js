@@ -11,7 +11,25 @@ exports.seed = async function (knex) {
   const fakeUserCount = 1000;
   let relationshipPref = [];
 
-  for (let i = 1; i <= fakeUserCount; i++) {
+  // create relationship preference for demo user 1
+  relationshipPref.push({
+    user_id: 1,
+    relationship_id: 1,
+  });
+
+  // create relationship preference for demo user 2
+  relationshipPref.push({
+    user_id: 2,
+    relationship_id: 3,
+  });
+
+  // create relationship preference for demo user 3
+  relationshipPref.push({
+    user_id: 3,
+    relationship_id: 3,
+  });
+
+  for (let i = 4; i <= fakeUserCount; i++) {
     shuffleArray(relationshipNames);
     const randomSelection = relationshipNames.slice(
       0,

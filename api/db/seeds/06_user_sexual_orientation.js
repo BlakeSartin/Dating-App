@@ -6,10 +6,29 @@ exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("user_sexual_orientation").del();
 
-  // create 5 sexual orientation for each user
   userOrientations = [];
   const fakeUserCount = 1000;
-  for (let i = 1; i <= fakeUserCount; i++) {
+
+  // create sexual orientation for demo user 1
+  userOrientations.push({
+    user_id: 1,
+    orientation_id: 1,
+  });
+
+  // create sexual orientation for demo user 2
+  userOrientations.push({
+    user_id: 2,
+    orientation_id: 4,
+  });
+
+  // create sexual orientation for demo user 2
+  userOrientations.push({
+    user_id: 3,
+    orientation_id: 4,
+  });
+
+  // create 5 sexual orientation for each user
+  for (let i = 4; i <= fakeUserCount; i++) {
     for (let j = 0; j < 4; j++) {
       userOrientations.push({
         user_id: i,

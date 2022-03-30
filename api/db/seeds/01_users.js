@@ -22,9 +22,40 @@ exports.seed = async function (knex) {
       )}.avif`
     );
   }
+  // create user 1 who will be our demo user
+  fakeUsers.push({
+    first_name: "John",
+    last_name: "Doe",
+    email: faker.internet.email(),
+    summary: `Pronouns: ${
+      pronouns[Math.floor(Math.random() * pronouns.length)]
+    }`,
+    profile: faker.lorem.lines(2),
+    avatar: userImages[1],
+  });
+
+  // create user 2 who will be our demo liked user
+  fakeUsers.push({
+    first_name: "Jane",
+    last_name: "Smith",
+    email: faker.internet.email(),
+    summary: `Pronouns: He/Him`,
+    profile: "Is this the real life? Is this just fantasy?",
+    avatar: userImages[2],
+  });
+
+  // create user 3 who will be our demo liked user
+  fakeUsers.push({
+    first_name: "Freddie",
+    last_name: "Mercury",
+    email: faker.internet.email(),
+    summary: `Pronouns: He/Him`,
+    profile: "Is this the real life? Is this just fantasy?",
+    avatar: "/photos/freddie.jpg",
+  });
 
   // Create 1000 fake users
-  for (let i = 0; i < desiredFakeUsers; i++) {
+  for (let i = 2; i < desiredFakeUsers; i++) {
     fakeUsers.push({
       first_name: faker.name.firstName(),
       last_name: faker.name.lastName(),
