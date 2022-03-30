@@ -20,6 +20,12 @@
   }
 }
 
+.MuiListItem-root {
+  .MuiListItemText-primary {
+    font-family:"Snell Roundhand, cursive";
+  }
+}
+
 .MuiListItem-root:last-child {
   margin-bottom: 5rem;
 }
