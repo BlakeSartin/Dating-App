@@ -1,5 +1,5 @@
 .arrow_circle {
-  position:relative;
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -8,4 +8,5 @@
 
 .MuiBackdrop-root {
   padding-left: 5vh !important;
+  flex-direction: column;
 }
