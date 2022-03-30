@@ -22,7 +22,7 @@ export default function Profile(props) {
       <section className="profile-user">
         <Avatar
           alt="User profile picture"
-          src=""
+          src={user.avatar}
           sx={{ width: 56, height: 56 }}
         />
         <h2 className="user-profile-name">
