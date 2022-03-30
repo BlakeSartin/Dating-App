@@ -59,10 +59,6 @@ exports.seed = async function (knex) {
       user_id: i,
       gender_id: generateGenderIdentity(),
     });
-    userIdentities.push({
-      user_id: i,
-      gender_id: generateGenderIdentity(),
-    });
   }
   await knex("user_gender_identity").insert(userIdentities);
 };

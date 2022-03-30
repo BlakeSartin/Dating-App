@@ -10,7 +10,7 @@ exports.seed = async function (knex) {
   userOrientations = [];
   const fakeUserCount = 1000;
   for (let i = 1; i <= fakeUserCount; i++) {
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 4; j++) {
       userOrientations.push({
         user_id: i,
         orientation_id: randomPosition(orientationNames),
