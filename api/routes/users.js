@@ -130,6 +130,7 @@ module.exports = (knex) => {
         SELECT users.id,
           first_name || ' ' || last_name AS name,
           summary,
+          profile,
           avatar AS url,
           user_liked IS NOT NULL AS liked_you,
           ARRAY_AGG(DISTINCT sexual_orientations.name) as sexual_orientation,
