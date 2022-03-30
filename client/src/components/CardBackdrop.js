@@ -7,6 +7,7 @@ export default function CardBackdrop({
   summary,
   genderIdentity,
   sexualOrientation,
+  profile,
 }) {
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
@@ -43,6 +44,7 @@ export default function CardBackdrop({
           })}
         </h4>
         <h4 className="backdrop_text">{summary}</h4>
+        <h4 className="backdrop_text">{profile}</h4>
       </Backdrop>
     </div>
   );

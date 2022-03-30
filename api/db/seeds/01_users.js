@@ -1,6 +1,5 @@
 // middleware for creating fake data
 const { faker } = require("@faker-js/faker");
-const rp = require("request-promise");
 
 /**
  * @param { import("knex").Knex } knex
@@ -14,65 +13,64 @@ exports.seed = async function (knex) {
   const userImages = [];
   const fakeUsers = [];
   const desiredFakeUsers = 1000;
-  // get 1000 profile images
-  await rp("https://randomuser.me/api/?results=1000").then((data) => {
-    parsedData = JSON.parse(data);
 
-    // // add images from api call
-    // for (const result of parsedData.results) {
-    //   userImages.push(result.picture.large);
-    //   console.log(userImages);
-    // }
-
-    // add images saved locally
-    for (let i = 0; i <= desiredFakeUsers; i++) {
-      userImages.push(
-        `/photos/0${Math.floor(Math.random() * 10)}${Math.floor(
-          Math.random() * 10
-        )}.avif`
-      );
-    }
-
-    // Create 1000 fake users
-    for (let i = 0; i < desiredFakeUsers; i++) {
-      fakeUsers.push({
-        first_name: faker.name.firstName(),
-        last_name: faker.name.lastName(),
-        email: faker.internet.email(),
-        summary: faker.lorem.lines(2),
-        profile: faker.lorem.lines(2),
-        avatar: userImages[i],
-      });
-    }
+  // add images saved locally
+  for (let i = 0; i <= desiredFakeUsers; i++) {
+    userImages.push(
+      `/photos/0${Math.floor(Math.random() * 10)}${Math.floor(
+        Math.random() * 10
+      )}.avif`
+    );
+  }
+  // create user 1 who will be our demo user
+  fakeUsers.push({
+    first_name: "John",
+    last_name: "Doe",
+    email: faker.internet.email(),
+    summary: `Pronouns: ${
+      pronouns[Math.floor(Math.random() * pronouns.length)]
+    }`,
+    profile: faker.lorem.lines(2),
+    avatar: userImages[1],
   });
+
+  // create user 2 who will be our demo liked user
+  fakeUsers.push({
+    first_name: "Jane",
+    last_name: "Smith",
+    email: faker.internet.email(),
+    summary: `Pronouns: He/Him`,
+    profile: "Is this the real life? Is this just fantasy?",
+    avatar: userImages[2],
+  });
+
+  // create user 3 who will be our demo liked user
+  fakeUsers.push({
+    first_name: "Freddie",
+    last_name: "Mercury",
+    email: faker.internet.email(),
+    summary: `Pronouns: He/Him`,
+    profile: "Is this the real life? Is this just fantasy?",
+    avatar: "/photos/freddie.jpg",
+  });
+
+  // Create 1000 fake users
+  for (let i = 2; i < desiredFakeUsers; i++) {
+    fakeUsers.push({
+      first_name: faker.name.firstName(),
+      last_name: faker.name.lastName(),
+      email: faker.internet.email(),
+      summary: `Pronouns: ${
+        pronouns[Math.floor(Math.random() * pronouns.length)]
+      }`,
+      profile: faker.lorem.lines(2),
+      avatar: userImages[i],
+    });
+  }
 
   // add them to database
   await knex("users").insert(fakeUsers);
 };
 
-// Helper function to generate fake user
-const createFakeUser = () => ({
-  first_name: faker.name.firstName(),
-  last_name: faker.name.lastName(),
-  email: faker.internet.email(),
-  summary: faker.lorem.lines(2),
-  profile: faker.lorem.paragraphs(),
-  avatar: faker.image.avatar(),
-});
-
-// get 1000 user images from randomuser api
-// return array of 1000 random images
-const getRandomUsers = () => {
-  rp("https://randomuser.me/api/?results=1000").then((data) => {
-    const userImages = [];
-    parsedData = JSON.parse(data);
-
-    for (const result of parsedData.results) {
-      // console.log(result.picture.large);
-      userImages.push(result.picture.large);
-      console.log(userImages);
-    }
-
-    return userImages;
-  });
-};
+// array of pronoun strings
+const pronouns = ["He/Him", "She/Her", "They/Them"];

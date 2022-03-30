@@ -13,22 +13,36 @@ exports.seed = async function (knex) {
   const messages = [];
   const fakeUserCount = 5;
 
-  for (let i = 1; i <= fakeUserCount; i++) {
-    conversations.push({
-      user_one: 1,
-      user_two: i,
-    });
-    messages.push({
-      user_id: 1,
-      conversation_id: i,
-      message: faker.random.words(),
-    });
-    messages.push({
-      user_id: i,
-      conversation_id: i,
-      message: faker.random.words(),
-    });
-  }
+  // for (let i = 1; i <= fakeUserCount; i++) {
+  conversations.push({
+    user_one: 1,
+    user_two: 100,
+  });
+  messages.push({
+    user_id: 1,
+    conversation_id: 1,
+    message: "I had a lot of fun last night!",
+  });
+  messages.push({
+    user_id: 100,
+    conversation_id: 1,
+    message: "Me too",
+  });
+  messages.push({
+    user_id: 100,
+    conversation_id: 1,
+    message: "Let's hang out again next weekend",
+  });
+  conversations.push({
+    user_one: 1,
+    user_two: 101,
+  });
+  messages.push({
+    user_id: 101,
+    conversation_id: 2,
+    message: "Is 6 tonight good for you?",
+  });
+  // }
 
   await knex("conversations").insert(conversations);
   await knex("messages").insert(messages);

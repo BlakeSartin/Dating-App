@@ -119,6 +119,7 @@ function Cards() {
             summary={db[people].summary}
             genderIdentity={db[people].gender_identity}
             sexualOrientation={db[people].sexual_orientation}
+            profile={db[people].profile}
           />
         )}
       </div>
