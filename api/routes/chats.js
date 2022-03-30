@@ -50,9 +50,10 @@ module.exports = (knex) => {
           ) AS temp_message ON temp_message.id = messages.id
         ) AS recent_messages ON recent_messages.conversation_id = conversations.id
         WHERE conversations.user_one = ?
+        OR conversations.user_two = ?
         ORDER BY room_id DESC;
         `,
-        [request.params.id]
+        [request.params.id, request.params.id]
       )
       .then((conversations) => {
         response.json(conversations.rows);
