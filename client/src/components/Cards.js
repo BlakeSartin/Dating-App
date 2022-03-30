@@ -114,13 +114,22 @@ function Cards() {
         </TinderCard>
       ))}
       <div className="arrow_down">
-        {db[people] && <CardBackdrop summary={db[people].summary} />}
+        {db[people] && (
+          <CardBackdrop
+            summary={db[people].summary}
+            genderIdentity={db[people].gender_identity}
+            sexualOrientation={db[people].sexual_orientation}
+          />
+        )}
       </div>
 
       <div>
-        {(db[people] && db[people].liked_you) ? <MatchBackdrop name={db[people].name}/>: ''} 
+        {db[people] && db[people].liked_you ? (
+          <MatchBackdrop name={db[people].name} />
+        ) : (
+          ""
+        )}
       </div>
-
 
       <div className="buttons">
         <IconButton className="broke_button" onClick={() => swipe("left")}>
