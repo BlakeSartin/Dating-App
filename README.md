@@ -4,7 +4,7 @@
 Queery
 
 # Description
-
+A queer dating app with tinder-like dynamic swipe functions, as well as dynamic chat and messaging functionality. Users can navigate from their swipe page, profile page and chat page using the top bar buttons. Users can match with other users then start conversations with them immediately.
 
 ## Dependencies
 
