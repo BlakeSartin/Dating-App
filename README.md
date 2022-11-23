@@ -1,5 +1,11 @@
 # Dating-App
 
+# Project Title 
+Queery
+
+# Description
+
+
 ## Dependencies
 
 In the project root use `npm install` to install all dependencies. The `package.json` file in the root has a script to install dependencies for both the api and the client, so you only need to run the installation once.
